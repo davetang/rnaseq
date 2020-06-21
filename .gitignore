@@ -1,0 +1,7 @@
+raw/chrX_data
+raw/chrX_data.tar.gz
+raw/ftp.ccb.jhu.edu
+hisat2/*.bam
+hisat2/*.bai
+src/hisat2-2.2.0
+src/stringtie-2.1.3b.Linux_x86_64
