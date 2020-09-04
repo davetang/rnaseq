@@ -1,0 +1,202 @@
+---
+title: "Differential gene expression using EBSeq"
+author: "Dave Tang"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+R code from vignette source [EBSeq_Vignette](https://www.bioconductor.org/packages/release/bioc/vignettes/EBSeq/inst/doc/EBSeq_Vignette.R).
+
+```{r load_ebseq, message=FALSE, warning=FALSE}
+if (!"EBSeq" %in% installed.packages()[, "Package"]){
+  BiocManager::install("EBSeq")
+}
+library(EBSeq)
+```
+
+## Gene level differential expression
+
+Load example data with 1000 genes across 10 samples. These values should exhibit raw counts, without normalisation across samples.
+
+```{r load_gene_data}
+data(GeneMat)
+head(GeneMat)
+```
+
+Median normalisation.
+
+```{r gene_median_norm}
+Sizes <- MedianNorm(GeneMat)
+Sizes
+```
+
+Run `EBTest` where `maxround` is the number of iterations. The default value is 5 but users should always check the convergence (check difference in values between each iteration) by looking at the Alpha and Beta in output. If the hyper-parameter estimations are not converged in 5 iterations, larger number is suggested.
+
+```{r gene_ebtest, message=FALSE, warning=FALSE}
+cond <- as.factor(rep(c("C1","C2"),each=5))
+
+EBOut <- EBTest(Data = GeneMat, 
+                Conditions = cond,
+                sizeFactors = Sizes,
+                maxround = 5)
+
+EBOut$Alpha
+EBOut$Beta
+```
+
+`GetDEResults` will obtain differential expression analysis results in a two-condition test. List will contain:
+
+* DEfound - A list of DE transcripts.
+* PPMat - Posterior probability matrix. Transcripts are following the same order as in the input matrix. Transcripts that were filtered by magnitude (in EBTest function), FC, or FCR are assigned with NA for both PPDE and PPEE.
+* Status - Each transcript will be assigned with one of the following values: "DE", "EE", "Filtered: Low Expression", "Filtered: Fold Change" and "Filtered: Fold Change Ratio". Transcripts are following the same order as in the input matrix.
+
+```{r gene_de_result}
+EBDERes <- GetDEResults(EBOut, FDR=0.05)
+
+EBDERes$PPMat %>%
+  as.data.frame() %>%
+  rownames_to_column(var = "id") %>%
+  filter(PPDE > 0.95) %>%
+  pull(id) -> test
+
+identical(test, EBDERes$DEfound)
+```
+
+Status.
+
+```{r gene_status}
+table(EBDERes$Status)
+```
+
+## Isoform level differential expression
+
+Example transcript/isoform data is a list with three items:
+
+* `IsoMat` - expression matrix
+* `IsoNames` - transcript IDs
+* `IsosGeneNames` - gene IDs
+
+```{r load_iso_data}
+data(IsoList)
+
+IsoMat <- IsoList$IsoMat
+head(IsoMat)
+
+IsoNames <- IsoList$IsoNames
+head(IsoNames)
+
+IsosGeneNames <- IsoList$IsosGeneNames
+head(IsosGeneNames)
+
+any(duplicated(IsoList$IsosGeneNames))
+```
+
+Median normalisation.
+
+```{r iso_median_norm}
+IsoSizes <- MedianNorm(IsoMat)
+```
+
+Fit on isoform level. `GetNg` generates the Ng vector for the isoform level data, while using the number of isoform in the host gene to define the uncertainty groups.
+
+```{r get_ng}
+NgList <- GetNg(IsoNames, IsosGeneNames)
+IsoNgTrun <- NgList$IsoformNgTrun
+IsoNgTrun[c(1:3,201:203,601:603)]
+```
+
+DE results for isoforms.
+
+```{r iso_de_result, message=FALSE, warning=FALSE}
+IsoEBOut <- EBTest(Data = IsoMat,
+                   NgVector = IsoNgTrun, 
+                   Conditions <- as.factor(rep(c("C1","C2"),each=5)),
+                   sizeFactors = IsoSizes,
+                   maxround = 5)
+
+IsoEBDERes <- GetDEResults(IsoEBOut, FDR=0.05)
+
+length(IsoEBDERes$DEfound)
+
+IsoEBDERes$PPMat %>%
+  as.data.frame() %>%
+  rownames_to_column(var = "id") %>%
+  filter(PPDE > 0.95) %>%
+  nrow()
+```
+
+## No replicates
+
+When replicates are not available, it is difficult to estimate the transcript specific variance. In this case, EBSeq estimates the variance by pooling similar genes together. Specifically, we take genes with FC in the 25% - 75% quantile of all FC's as candidate genes. By defining `NumBin` = 1000 (default), EBSeq will group genes with similar means into 1,000 bins. For each candidate gene, we use the across-condition variance estimate as its variance estimate. For each bin, the bin-wise variance estimation is taken to be the median of the across-condition variance estimates of the candidate genes within that bin. For each non-candidate gene, we use the bin-wise variance estimate of the host bin (the bin containing this gene) as its variance estimate. This approach works well when there are no more than 50% DE genes in the data set.
+
+On gene level. Use `PostFC` to calculate the posterior fold change for each transcript across conditions.
+
+```{r gene_no_rep, message=FALSE, warning=FALSE}
+data(GeneMat)
+GeneMat.norep <- GeneMat[,c(1,6)]
+Sizes.norep <- MedianNorm(GeneMat.norep)
+EBOut.norep <- EBTest(Data=GeneMat.norep,
+                      Conditions=as.factor(rep(c("C1","C2"))),
+                      sizeFactors=Sizes.norep,
+                      maxround=5)
+
+EBDERes.norep <- GetDEResults(EBOut.norep)
+GeneFC.norep <- PostFC(EBOut.norep)
+
+length(EBDERes.norep$DEfound)
+```
+
+On isoform level.
+
+```{r iso_no_rep, message=FALSE, warning=FALSE}
+data(IsoList)
+IsoMat <- IsoList$IsoMat
+IsoNames <- IsoList$IsoNames
+IsosGeneNames <- IsoList$IsosGeneNames
+NgList <- GetNg(IsoNames, IsosGeneNames)
+IsoNgTrun <- NgList$IsoformNgTrun
+IsoMat.norep <- IsoMat[,c(1,6)]
+IsoSizes.norep <- MedianNorm(IsoMat.norep)
+IsoEBOut.norep <- EBTest(Data = IsoMat.norep,
+                         NgVector = IsoNgTrun,
+                         Conditions = as.factor(c("C1","C2")),
+                         sizeFactors = IsoSizes.norep,
+                         maxround=5)
+
+IsoEBDERes.norep <- GetDEResults(IsoEBOut.norep)
+
+IsoFC.norep <- PostFC(IsoEBOut.norep)
+
+status_df <- data.frame(id = names(IsoEBDERes.norep$Status),
+                        de_status = IsoEBDERes.norep$Status)
+
+fc_df <- data.frame(id = names(IsoFC.norep$PostFC),
+                    fc = IsoFC.norep$PostFC)
+
+exp_df <- data.frame(IsoMat[, c(1, 6)])
+exp_df$mean_exp <- rowMeans(exp_df)
+exp_df$id <- row.names(IsoMat[, c(1, 6)])
+
+de_test_df <- data.frame(IsoEBDERes.norep$PPMat)
+de_test_df$id <- row.names(IsoEBDERes.norep$PPMat)
+
+inner_join(x = exp_df, y = fc_df, by = "id") %>%
+  inner_join(., y = de_test_df, by = "id") %>%
+  inner_join(., y = status_df, by = "id") %>%
+  filter(!grepl(pattern = "Filtered", x = de_status)) %>%
+  select(id, fc, PPEE, PPDE, everything()) -> my_df
+
+ggplot(my_df, aes(X1, X2, colour = de_status)) +
+  geom_point() +
+  geom_abline(slope = 1, lty = 2, colour = "grey") +
+  scale_x_log10() +
+  scale_y_log10() +
+  theme_bw() +
+  labs(x = "Sample 1", y = "Sample 6") +
+  NULL
+```
