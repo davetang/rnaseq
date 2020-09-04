@@ -1,0 +1,3 @@
+[submodule "RNA-seq-analysis"]
+	path = RNA-seq-analysis
+	url = git@github.com:davetang/RNA-seq-analysis.git
