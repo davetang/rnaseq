@@ -21,6 +21,8 @@ library(EBSeq)
 
 ## Gene level differential expression
 
+Workflow: Expression matrix -> `MedianNorm` -> define `cond` -> `EBTest` -> `GetDEResults`.
+
 Load example data with 1000 genes across 10 samples. These values should exhibit raw counts, without normalisation across samples.
 
 ```{r load_gene_data}
@@ -38,7 +40,7 @@ Sizes
 Run `EBTest` where `maxround` is the number of iterations. The default value is 5 but users should always check the convergence (check difference in values between each iteration) by looking at the Alpha and Beta in output. If the hyper-parameter estimations are not converged in 5 iterations, larger number is suggested.
 
 ```{r gene_ebtest, message=FALSE, warning=FALSE}
-cond <- as.factor(rep(c("C1","C2"),each=5))
+cond <- as.factor(rep(c("C1","C2"), each=5))
 
 EBOut <- EBTest(Data = GeneMat, 
                 Conditions = cond,
@@ -67,13 +69,15 @@ EBDERes$PPMat %>%
 identical(test, EBDERes$DEfound)
 ```
 
-Status.
+Differential expression status.
 
-```{r gene_status}
+```{r gene_de_status}
 table(EBDERes$Status)
 ```
 
 ## Isoform level differential expression
+
+Workflow: Expression matrix -> `MedianNorm` -> `GetNg` -> `IsoformNgTrun` -> define `cond` -> `EBTest` -> `GetDEResults`.
 
 Example transcript/isoform data is a list with three items:
 
@@ -88,15 +92,13 @@ IsoMat <- IsoList$IsoMat
 head(IsoMat)
 
 IsoNames <- IsoList$IsoNames
-head(IsoNames)
+length(unique(IsoNames))
 
 IsosGeneNames <- IsoList$IsosGeneNames
-head(IsosGeneNames)
-
-any(duplicated(IsoList$IsosGeneNames))
+length(unique(IsosGeneNames))
 ```
 
-Median normalisation.
+Median normalisation on expression matrix.
 
 ```{r iso_median_norm}
 IsoSizes <- MedianNorm(IsoMat)
@@ -113,9 +115,10 @@ IsoNgTrun[c(1:3,201:203,601:603)]
 DE results for isoforms.
 
 ```{r iso_de_result, message=FALSE, warning=FALSE}
+cond <- as.factor(rep(c("C1","C2"), each=5))
 IsoEBOut <- EBTest(Data = IsoMat,
                    NgVector = IsoNgTrun, 
-                   Conditions <- as.factor(rep(c("C1","C2"),each=5)),
+                   Conditions <- cond,
                    sizeFactors = IsoSizes,
                    maxround = 5)
 
@@ -134,15 +137,17 @@ IsoEBDERes$PPMat %>%
 
 When replicates are not available, it is difficult to estimate the transcript specific variance. In this case, EBSeq estimates the variance by pooling similar genes together. Specifically, we take genes with FC in the 25% - 75% quantile of all FC's as candidate genes. By defining `NumBin` = 1000 (default), EBSeq will group genes with similar means into 1,000 bins. For each candidate gene, we use the across-condition variance estimate as its variance estimate. For each bin, the bin-wise variance estimation is taken to be the median of the across-condition variance estimates of the candidate genes within that bin. For each non-candidate gene, we use the bin-wise variance estimate of the host bin (the bin containing this gene) as its variance estimate. This approach works well when there are no more than 50% DE genes in the data set.
 
+Workflow: Expression matrix -> `MedianNorm` -> define `cond` -> `EBTest` -> `GetDEResults` -> `PostFC`.
+
 On gene level. Use `PostFC` to calculate the posterior fold change for each transcript across conditions.
 
 ```{r gene_no_rep, message=FALSE, warning=FALSE}
 data(GeneMat)
 GeneMat.norep <- GeneMat[,c(1,6)]
 Sizes.norep <- MedianNorm(GeneMat.norep)
-EBOut.norep <- EBTest(Data=GeneMat.norep,
-                      Conditions=as.factor(rep(c("C1","C2"))),
-                      sizeFactors=Sizes.norep,
+EBOut.norep <- EBTest(Data = GeneMat.norep,
+                      Conditions = as.factor(rep(c("C1","C2"))),
+                      sizeFactors = Sizes.norep,
                       maxround=5)
 
 EBDERes.norep <- GetDEResults(EBOut.norep)
@@ -151,27 +156,33 @@ GeneFC.norep <- PostFC(EBOut.norep)
 length(EBDERes.norep$DEfound)
 ```
 
-On isoform level.
+On isoform level. Workflow: Expression matrix -> `MedianNorm` -> `GetNg` -> `IsoformNgTrun` -> define `cond` -> `EBTest` -> `GetDEResults` -> `PostFC`.
 
 ```{r iso_no_rep, message=FALSE, warning=FALSE}
 data(IsoList)
 IsoMat <- IsoList$IsoMat
 IsoNames <- IsoList$IsoNames
 IsosGeneNames <- IsoList$IsosGeneNames
-NgList <- GetNg(IsoNames, IsosGeneNames)
-IsoNgTrun <- NgList$IsoformNgTrun
+
 IsoMat.norep <- IsoMat[,c(1,6)]
 IsoSizes.norep <- MedianNorm(IsoMat.norep)
+
+NgList <- GetNg(IsoNames, IsosGeneNames)
+IsoNgTrun <- NgList$IsoformNgTrun
 IsoEBOut.norep <- EBTest(Data = IsoMat.norep,
                          NgVector = IsoNgTrun,
                          Conditions = as.factor(c("C1","C2")),
                          sizeFactors = IsoSizes.norep,
-                         maxround=5)
+                         maxround = 5)
 
 IsoEBDERes.norep <- GetDEResults(IsoEBOut.norep)
 
 IsoFC.norep <- PostFC(IsoEBOut.norep)
+```
 
+Create result table and plot.
+
+```{r result_table, message=FALSE, warning=FALSE}
 status_df <- data.frame(id = names(IsoEBDERes.norep$Status),
                         de_status = IsoEBDERes.norep$Status)
 
@@ -199,4 +210,158 @@ ggplot(my_df, aes(X1, X2, colour = de_status)) +
   theme_bw() +
   labs(x = "Sample 1", y = "Sample 6") +
   NULL
+```
+
+As a function.
+
+```{r plot_ebtest_norep, message=FALSE, warning=FALSE}
+plot_ebtest_norep <- function(my_mat, my_ebtest, my_fc, my_xlab, my_ylab){
+  exp_df <- data.frame(my_mat)
+  exp_df$mean_exp <- rowMeans(exp_df)
+  exp_df$id <- row.names(my_mat)
+  
+  status_df <- data.frame(id = names(my_ebtest$Status),
+                          de_status = my_ebtest$Status)
+  
+  de_test_df <- data.frame(my_ebtest$PPMat)
+  de_test_df$id <- row.names(my_ebtest$PPMat)
+  
+  fc_df <- data.frame(id = names(my_fc$PostFC),
+                      fc = my_fc$PostFC)
+  
+  inner_join(x = exp_df, y = fc_df, by = "id") %>%
+    inner_join(., y = de_test_df, by = "id") %>%
+    inner_join(., y = status_df, by = "id") %>%
+    filter(!grepl(pattern = "Filtered", x = de_status)) %>%
+    select(id, fc, PPEE, PPDE, everything()) -> my_df
+  
+  ggplot(my_df, aes(X1, X2, colour = de_status)) +
+    geom_point() +
+    geom_abline(slope = 1, lty = 2, colour = "grey") +
+    scale_x_log10() +
+    scale_y_log10() +
+    theme_bw() +
+    labs(x = my_xlab, y = my_ylab) +
+    NULL -> p
+  
+  print(p)
+}
+
+plot_ebtest_norep(IsoMat[, c(1, 6)], IsoEBDERes.norep, IsoFC.norep, "Sample 1", "Sample 6")
+```
+
+## RSEM
+
+We will use `tximport` to load RSEM results. Install if missing and then load library.
+
+```{r load_tximport, message=FALSE, warning=FALSE}
+if (!"tximport" %in% installed.packages()[, "Package"]){
+  BiocManager::install("tximport")
+}
+library(tximport)
+```
+
+Load RSEM results.
+
+```{r load_rsem, warning=FALSE, message=FALSE}
+get_file_list <- function(pattern = ".rsem.genes.results.gz", result_dir = "../star_rsem/"){
+  my_list <- list.files(path = result_dir, pattern = pattern, full.names = TRUE, recursive = TRUE)
+  my_sample <- sub(pattern = pattern, replacement = "", x = basename(my_list))
+  my_sample <- gsub(pattern = "-", replacement = "_", x = my_sample)
+  names(my_list) <- my_sample
+  return(my_list)
+}
+
+rsem_gene_file <- get_file_list(pattern = "_chrX.*rsem.genes.results.gz")
+rsem_tran_file <- get_file_list(pattern = "_chrX.*rsem.isoforms.results.gz")
+
+rsem_gene <- tximport(rsem_gene_file,
+                      type = "rsem",
+                      txIn = FALSE,
+                      txOut = FALSE)
+
+rsem_tran <- tximport(rsem_tran_file,
+                      type = "rsem",
+                      txIn = TRUE,
+                      txOut = TRUE)
+
+dim(rsem_gene$counts)
+dim(rsem_tran$counts)
+```
+
+Load phenotype data.
+
+```{r load_phenodata, message=FALSE, warning=FALSE}
+pheno_data <- read_csv(file = "../raw/chrX_data/geuvadis_phenodata.csv")
+pheno_data
+```
+
+Define condition.
+
+```{r rsem_cond}
+my_cond <- factor(pheno_data$sex[match(colnames(rsem_gene$counts), pheno_data$ids)])
+my_cond
+```
+
+Differential expression analysis.
+
+```{r rsem_gene_de, message=FALSE, warning=FALSE}
+rsem_gene_ebtest <- EBTest(Data = rsem_gene$counts,
+                           Conditions = my_cond,
+                           sizeFactors = MedianNorm(rsem_gene$counts),
+                           maxround = 5)
+
+rsem_gene_de <- GetDEResults(rsem_gene_ebtest)
+rsem_gene_fc <- PostFC(rsem_gene_ebtest)
+
+rsem_gene_de$DEfound
+```
+
+Load `rtracklayer` and install if necessary.
+
+```{r load_rtracklayer, message=FALSE, warning=FALSE}
+if (!"rtracklayer" %in% installed.packages()[, "Package"]){
+  BiocManager::install("rtracklayer")
+}
+library(rtracklayer)
+```
+
+Load GTF file.
+
+```{r load_gtf}
+my_gtf <- import(con = "../raw/chrX_data/genes/chrX.gtf")
+length(unique(my_gtf$gene_id))
+length(unique(my_gtf$transcript_id))
+```
+
+Differentially expression gene names.
+
+```{r rsem_gene_de_name}
+unique(my_gtf[my_gtf$gene_id %in% rsem_gene_de$DEfound, ]$gene_name)
+```
+
+For transcripts we need to create `IsoNames`. Recall that we need:
+
+1. IsoMat <- IsoList$IsoMat
+2. IsoNames <- IsoList$IsoNames
+3. IsosGeneNames <- IsoList$IsosGeneNames
+
+Workflow: Expression matrix -> `MedianNorm` -> `GetNg` -> `IsoformNgTrun` -> define `cond` -> `EBTest` -> `GetDEResults` -> `PostFC`.
+
+```{r rsem_tran_de, message=FALSE, warning=FALSE}
+my_mat <- rsem_tran$counts
+my_iso <- row.names(rsem_tran$counts)
+my_gtf_matched <- my_gtf[match(my_iso, my_gtf$transcript_id), ]
+my_iso_gene <- my_gtf_matched$gene_id
+
+rsem_tran_ebtest <- EBTest(Data = my_mat,
+                           NgVector = GetNg(my_iso, my_iso_gene)$IsoformNgTrun,
+                           Conditions = my_cond,
+                           sizeFactors = MedianNorm(my_mat),
+                           maxround = 5)
+
+rsem_tran_de <- GetDEResults(rsem_tran_ebtest)
+rsem_tran_fc <- PostFC(rsem_tran_ebtest)
+
+rsem_tran_de$DEfound
 ```
