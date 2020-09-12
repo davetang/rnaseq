@@ -108,7 +108,13 @@ Fit on isoform level. `GetNg` generates the Ng vector for the isoform level data
 
 ```{r get_ng}
 NgList <- GetNg(IsoNames, IsosGeneNames)
+
+names(NgList)
+
 IsoNgTrun <- NgList$IsoformNgTrun
+
+table(IsoNgTrun)
+
 IsoNgTrun[c(1:3,201:203,601:603)]
 ```
 
