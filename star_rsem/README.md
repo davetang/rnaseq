@@ -6,7 +6,41 @@ Material on STAR adapted from https://github.com/hbctraining/Intro-to-rnaseq-hpc
 
 ## Testing data
 
-Data from [The transcriptional landscape and mutational profile of lung adenocarcinoma](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3483540/) deposited accession number [ERP001058](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE40419) and raw data deposited at the SRA under [ERP001058](https://www.ncbi.nlm.nih.gov/sra?term=ERP001058).
+Data from [The transcriptional landscape and mutational profile of lung adenocarcinoma](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3483540/) deposited accession number [GSE40419](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE40419) and raw data deposited at the SRA under [ERP001058](https://www.ncbi.nlm.nih.gov/sra?term=ERP001058).
+
+Metadata on samples in GSE40419.
+
+```bash
+esearch -db gds -query GSE40419 | efetch -db sequences -format Accession > sample_metadata.txt
+```
+
+Next use the ERX IDs to obtain the run IDs.
+
+```bash
+rm -f get_runinfo.txt
+cat sample_metadata.txt |
+   perl -nle 'if (/acc=(ERX.*)$/){
+                    $exp = $1;
+                    if ($exp =~ /,/){
+                       @s = split(/,/, $exp);
+                       foreach my $e (@s){
+                          print "$e"
+                       }
+                    } else {
+                       print $exp
+                    }
+                 }' |
+   xargs -I{} echo "esearch -db sra -query {} | efetch -format runinfo > {}.runinfo.txt; sleep 3" >> get_runinfo.txt
+
+# fetch runinfo
+bash get_runinfo.txt
+
+# get run IDs
+cat *.runinfo.txt | grep ERR | cut -f1 -d',' > run_id.txt
+
+# remove runinfo
+rm *.runinfo.txt
+```
 
 Download [NCBI SRA Toolkit](https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=software) to download data.
 
@@ -24,7 +58,14 @@ vdb-config --interactive
 Download data using `fasterq-dump`.
 
 ```bash
+# download small sample of runs
 for acc in ERR164550 ERR164559 ERR164560 ERR164563 ERR164569 ERR164585 ERR164613; do
+   echo $acc
+   fasterq-dump -p --outdir fastq ${acc}
+done
+
+# download all runs
+for acc in $(cat run_id.txt); do
    echo $acc
    fasterq-dump -p --outdir fastq ${acc}
 done

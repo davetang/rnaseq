@@ -1,0 +1,1327 @@
+
+1. The transcriptional landscape and mutational profile of lung adenocarcinoma
+(Submitter supplied) Understanding the molecular signatures of cancer is important to apply appropriate targeted therapies. Here we present the first large scale RNA sequencing study of lung adenocarcinoma demonstrating its power to identify somatic point mutations as well as transcriptional variants such as gene fusions, alternative splicing events and expression outliers. Our results reveal the genetic basis of 200 lung adenocarcinomas in Koreans including deep characterization of 87 surgical specimens by transcriptome sequencing. more...
+Organism:	Homo sapiens
+Type:		Expression profiling by high throughput sequencing
+Platform: GPL11154 164 Samples
+FTP download: GEO (TXT) ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE40nnn/GSE40419/
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=PRJEB3132
+Series		Accession: GSE40419	ID: 200040419
+
+2. Illumina HiSeq 2000 (Homo sapiens)
+Organism:	Homo sapiens
+8383 Series 136146 Samples
+FTP download: GEO ftp://ftp.ncbi.nlm.nih.gov/geo/platforms/GPL11nnn/GPL11154/
+Platform	Accession: GPL11154	ID: 100011154
+
+3. LC_S52_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140426
+Sample		Accession: GSM993771	ID: 300993771
+
+4. LC_S51_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140425
+Sample		Accession: GSM993770	ID: 300993770
+
+5. LC_S50_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140424
+Sample		Accession: GSM993769	ID: 300993769
+
+6. LC_S49_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140423
+Sample		Accession: GSM993768	ID: 300993768
+
+7. LC_S48_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140422
+Sample		Accession: GSM993767	ID: 300993767
+
+8. LC_S47_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140421
+Sample		Accession: GSM993766	ID: 300993766
+
+9. LC_S46_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140420
+Sample		Accession: GSM993765	ID: 300993765
+
+10. LC_S45_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140419
+Sample		Accession: GSM993764	ID: 300993764
+
+11. LC_S44_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140418
+Sample		Accession: GSM993763	ID: 300993763
+
+12. LC_S43_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140417
+Sample		Accession: GSM993762	ID: 300993762
+
+13. LC_S42_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140416
+Sample		Accession: GSM993761	ID: 300993761
+
+14. LC_S41_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140415
+Sample		Accession: GSM993760	ID: 300993760
+
+15. LC_S40_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140414
+Sample		Accession: GSM993759	ID: 300993759
+
+16. LC_S39_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140413
+Sample		Accession: GSM993758	ID: 300993758
+
+17. LC_S38_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140412
+Sample		Accession: GSM993757	ID: 300993757
+
+18. LC_S37_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140411
+Sample		Accession: GSM993756	ID: 300993756
+
+19. LC_S36_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140410
+Sample		Accession: GSM993755	ID: 300993755
+
+20. LC_S35_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140409
+Sample		Accession: GSM993754	ID: 300993754
+
+21. LC_S34_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140408
+Sample		Accession: GSM993753	ID: 300993753
+
+22. LC_S33_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140407
+Sample		Accession: GSM993752	ID: 300993752
+
+23. LC_S32_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140406
+Sample		Accession: GSM993751	ID: 300993751
+
+24. LC_S31_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140405
+Sample		Accession: GSM993750	ID: 300993750
+
+25. LC_S30_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140404
+Sample		Accession: GSM993749	ID: 300993749
+
+26. LC_S29_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140403
+Sample		Accession: GSM993748	ID: 300993748
+
+27. LC_S28_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140402
+Sample		Accession: GSM993747	ID: 300993747
+
+28. LC_S27_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140401
+Sample		Accession: GSM993746	ID: 300993746
+
+29. LC_S26_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140400
+Sample		Accession: GSM993745	ID: 300993745
+
+30. LC_S25_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140399
+Sample		Accession: GSM993744	ID: 300993744
+
+31. LC_S24_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140398
+Sample		Accession: GSM993743	ID: 300993743
+
+32. LC_S23_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140397
+Sample		Accession: GSM993742	ID: 300993742
+
+33. LC_S22_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140396
+Sample		Accession: GSM993741	ID: 300993741
+
+34. LC_S21_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140395
+Sample		Accession: GSM993740	ID: 300993740
+
+35. LC_S20_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140394
+Sample		Accession: GSM993739	ID: 300993739
+
+36. LC_S19_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140393
+Sample		Accession: GSM993738	ID: 300993738
+
+37. LC_S18_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140392
+Sample		Accession: GSM993737	ID: 300993737
+
+38. LC_S17_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140391
+Sample		Accession: GSM993736	ID: 300993736
+
+39. LC_S16_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140390
+Sample		Accession: GSM993735	ID: 300993735
+
+40. LC_S15_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140389
+Sample		Accession: GSM993734	ID: 300993734
+
+41. LC_S14_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140388
+Sample		Accession: GSM993733	ID: 300993733
+
+42. LC_S13_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140387
+Sample		Accession: GSM993732	ID: 300993732
+
+43. LC_S11_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140386
+Sample		Accession: GSM993731	ID: 300993731
+
+44. LC_S10_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140385
+Sample		Accession: GSM993730	ID: 300993730
+
+45. LC_S9_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140384
+Sample		Accession: GSM993729	ID: 300993729
+
+46. LC_S8_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140383
+Sample		Accession: GSM993728	ID: 300993728
+
+47. LC_S6_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140382
+Sample		Accession: GSM993727	ID: 300993727
+
+48. LC_S5_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140381
+Sample		Accession: GSM993726	ID: 300993726
+
+49. LC_S4_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140380
+Sample		Accession: GSM993725	ID: 300993725
+
+50. LC_S3_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140379
+Sample		Accession: GSM993724	ID: 300993724
+
+51. LC_S2_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140378
+Sample		Accession: GSM993723	ID: 300993723
+
+52. LC_S1_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140377
+Sample		Accession: GSM993722	ID: 300993722
+
+53. LC_C36_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140376
+Sample		Accession: GSM993721	ID: 300993721
+
+54. LC_C35_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140375
+Sample		Accession: GSM993720	ID: 300993720
+
+55. LC_C34_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140374
+Sample		Accession: GSM993719	ID: 300993719
+
+56. LC_C33_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140373
+Sample		Accession: GSM993718	ID: 300993718
+
+57. LC_C31_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140372
+Sample		Accession: GSM993717	ID: 300993717
+
+58. LC_C30_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140371
+Sample		Accession: GSM993716	ID: 300993716
+
+59. LC_C29_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140370
+Sample		Accession: GSM993715	ID: 300993715
+
+60. LC_C28_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140369
+Sample		Accession: GSM993714	ID: 300993714
+
+61. LC_C25_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140368
+Sample		Accession: GSM993713	ID: 300993713
+
+62. LC_C24_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140367
+Sample		Accession: GSM993712	ID: 300993712
+
+63. LC_C22_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140366
+Sample		Accession: GSM993711	ID: 300993711
+
+64. LC_C21_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140365
+Sample		Accession: GSM993710	ID: 300993710
+
+65. LC_C20_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140364
+Sample		Accession: GSM993709	ID: 300993709
+
+66. LC_C19_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140363
+Sample		Accession: GSM993708	ID: 300993708
+
+67. LC_C18_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140362
+Sample		Accession: GSM993707	ID: 300993707
+
+68. LC_C17_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140361
+Sample		Accession: GSM993706	ID: 300993706
+
+69. LC_C16_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140360
+Sample		Accession: GSM993705	ID: 300993705
+
+70. LC_C14_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140359
+Sample		Accession: GSM993704	ID: 300993704
+
+71. LC_C12_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140358
+Sample		Accession: GSM993703	ID: 300993703
+
+72. LC_C11_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140357
+Sample		Accession: GSM993702	ID: 300993702
+
+73. LC_C10_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140356
+Sample		Accession: GSM993701	ID: 300993701
+
+74. LC_C9_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140355
+Sample		Accession: GSM993700	ID: 300993700
+
+75. LC_C7_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140354
+Sample		Accession: GSM993699	ID: 300993699
+
+76. LC_C5_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140353
+Sample		Accession: GSM993698	ID: 300993698
+
+77. LC_C3_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140352
+Sample		Accession: GSM993697	ID: 300993697
+
+78. LC_C2_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140351
+Sample		Accession: GSM993696	ID: 300993696
+
+79. LC_C1_nor
+Organism:	Homo sapiens
+Source name:	Adjacent lung normal cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140350
+Sample		Accession: GSM993695	ID: 300993695
+
+80. LC_S52
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140511
+Sample		Accession: GSM993694	ID: 300993694
+
+81. LC_S51
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140510
+Sample		Accession: GSM993693	ID: 300993693
+
+82. LC_S50
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140509
+Sample		Accession: GSM993692	ID: 300993692
+
+83. LC_S49
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140508
+Sample		Accession: GSM993691	ID: 300993691
+
+84. LC_S48
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140507
+Sample		Accession: GSM993690	ID: 300993690
+
+85. LC_S47
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140506
+Sample		Accession: GSM993689	ID: 300993689
+
+86. LC_S46
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140505
+Sample		Accession: GSM993688	ID: 300993688
+
+87. LC_S45
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140504
+Sample		Accession: GSM993687	ID: 300993687
+
+88. LC_S44
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140503
+Sample		Accession: GSM993686	ID: 300993686
+
+89. LC_S43
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140502
+Sample		Accession: GSM993685	ID: 300993685
+
+90. LC_S42
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140501
+Sample		Accession: GSM993684	ID: 300993684
+
+91. LC_S41
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140500
+Sample		Accession: GSM993683	ID: 300993683
+
+92. LC_S40
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140499
+Sample		Accession: GSM993682	ID: 300993682
+
+93. LC_S39
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140498
+Sample		Accession: GSM993681	ID: 300993681
+
+94. LC_S38
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140497
+Sample		Accession: GSM993680	ID: 300993680
+
+95. LC_S37
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140496
+Sample		Accession: GSM993679	ID: 300993679
+
+96. LC_S36
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140495
+Sample		Accession: GSM993678	ID: 300993678
+
+97. LC_S35
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140494
+Sample		Accession: GSM993677	ID: 300993677
+
+98. LC_S34
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140493
+Sample		Accession: GSM993676	ID: 300993676
+
+99. LC_S33
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140492
+Sample		Accession: GSM993675	ID: 300993675
+
+100. LC_S32
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140491
+Sample		Accession: GSM993674	ID: 300993674
+
+101. LC_S31
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140490
+Sample		Accession: GSM993673	ID: 300993673
+
+102. LC_S30
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140489
+Sample		Accession: GSM993672	ID: 300993672
+
+103. LC_S29
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140488
+Sample		Accession: GSM993671	ID: 300993671
+
+104. LC_S28
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140487
+Sample		Accession: GSM993670	ID: 300993670
+
+105. LC_S27
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140486
+Sample		Accession: GSM993669	ID: 300993669
+
+106. LC_S26
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140485
+Sample		Accession: GSM993668	ID: 300993668
+
+107. LC_S25
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140484
+Sample		Accession: GSM993667	ID: 300993667
+
+108. LC_S24
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140483
+Sample		Accession: GSM993666	ID: 300993666
+
+109. LC_S23
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140482
+Sample		Accession: GSM993665	ID: 300993665
+
+110. LC_S22
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140481
+Sample		Accession: GSM993664	ID: 300993664
+
+111. LC_S21
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140480
+Sample		Accession: GSM993663	ID: 300993663
+
+112. LC_S20
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140479
+Sample		Accession: GSM993662	ID: 300993662
+
+113. LC_S19
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140478
+Sample		Accession: GSM993661	ID: 300993661
+
+114. LC_S18
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140477
+Sample		Accession: GSM993660	ID: 300993660
+
+115. LC_S17
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140475,ERX140476
+Sample		Accession: GSM993659	ID: 300993659
+
+116. LC_S16
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140473,ERX140474
+Sample		Accession: GSM993658	ID: 300993658
+
+117. LC_S15
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140472
+Sample		Accession: GSM993657	ID: 300993657
+
+118. LC_S14
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140471
+Sample		Accession: GSM993656	ID: 300993656
+
+119. LC_S13
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140470
+Sample		Accession: GSM993655	ID: 300993655
+
+120. LC_S12
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140469
+Sample		Accession: GSM993654	ID: 300993654
+
+121. LC_S11
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140468
+Sample		Accession: GSM993653	ID: 300993653
+
+122. LC_S10
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140467
+Sample		Accession: GSM993652	ID: 300993652
+
+123. LC_S9
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140466
+Sample		Accession: GSM993651	ID: 300993651
+
+124. LC_S8
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140465
+Sample		Accession: GSM993650	ID: 300993650
+
+125. LC_S6
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140463,ERX140464
+Sample		Accession: GSM993649	ID: 300993649
+
+126. LC_S5
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX040280
+Sample		Accession: GSM993648	ID: 300993648
+
+127. LC_S4
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX040279
+Sample		Accession: GSM993647	ID: 300993647
+
+128. LC_S3
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX040278
+Sample		Accession: GSM993646	ID: 300993646
+
+129. LC_S2
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX040277
+Sample		Accession: GSM993645	ID: 300993645
+
+130. LC_S1
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX040276
+Sample		Accession: GSM993644	ID: 300993644
+
+131. LC_C36
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140462
+Sample		Accession: GSM993643	ID: 300993643
+
+132. LC_C35
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140461
+Sample		Accession: GSM993642	ID: 300993642
+
+133. LC_C34
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140460
+Sample		Accession: GSM993641	ID: 300993641
+
+134. LC_C33
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140459
+Sample		Accession: GSM993640	ID: 300993640
+
+135. LC_C32
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140458
+Sample		Accession: GSM993639	ID: 300993639
+
+136. LC_C31
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140457
+Sample		Accession: GSM993638	ID: 300993638
+
+137. LC_C30
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140456
+Sample		Accession: GSM993637	ID: 300993637
+
+138. LC_C29
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140455
+Sample		Accession: GSM993636	ID: 300993636
+
+139. LC_C28
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140454
+Sample		Accession: GSM993635	ID: 300993635
+
+140. LC_C27
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140453
+Sample		Accession: GSM993634	ID: 300993634
+
+141. LC_C26
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140452
+Sample		Accession: GSM993633	ID: 300993633
+
+142. LC_C25
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140451
+Sample		Accession: GSM993632	ID: 300993632
+
+143. LC_C24
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140450
+Sample		Accession: GSM993631	ID: 300993631
+
+144. LC_C23
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140449
+Sample		Accession: GSM993630	ID: 300993630
+
+145. LC_C22
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140448
+Sample		Accession: GSM993629	ID: 300993629
+
+146. LC_C21
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140447
+Sample		Accession: GSM993628	ID: 300993628
+
+147. LC_C20
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140446
+Sample		Accession: GSM993627	ID: 300993627
+
+148. LC_C19
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140445
+Sample		Accession: GSM993626	ID: 300993626
+
+149. LC_C18
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140444
+Sample		Accession: GSM993625	ID: 300993625
+
+150. LC_C17
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140443
+Sample		Accession: GSM993624	ID: 300993624
+
+151. LC_C16
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140442
+Sample		Accession: GSM993623	ID: 300993623
+
+152. LC_C15
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140441
+Sample		Accession: GSM993622	ID: 300993622
+
+153. LC_C14
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140440
+Sample		Accession: GSM993621	ID: 300993621
+
+154. LC_C13
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140439
+Sample		Accession: GSM993620	ID: 300993620
+
+155. LC_C12
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140438
+Sample		Accession: GSM993619	ID: 300993619
+
+156. LC_C11
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140437
+Sample		Accession: GSM993618	ID: 300993618
+
+157. LC_C10
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140436
+Sample		Accession: GSM993617	ID: 300993617
+
+158. LC_C9
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140435
+Sample		Accession: GSM993616	ID: 300993616
+
+159. LC_C8
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140434
+Sample		Accession: GSM993614	ID: 300993614
+
+160. LC_C7
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140433
+Sample		Accession: GSM993613	ID: 300993613
+
+161. LC_C6
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140432
+Sample		Accession: GSM993612	ID: 300993612
+
+162. LC_C5
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140431
+Sample		Accession: GSM993611	ID: 300993611
+
+163. LC_C4
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140430
+Sample		Accession: GSM993610	ID: 300993610
+
+164. LC_C3
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140429
+Sample		Accession: GSM993608	ID: 300993608
+
+165. LC_C2
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140428
+Sample		Accession: GSM993607	ID: 300993607
+
+166. LC_C1
+Organism:	Homo sapiens
+Source name:	Lung cancer cells
+Platform: GPL11154 Series: GSE40419 
+FTP download: 
+SRA Run Selector: https://www.ncbi.nlm.nih.gov/Traces/study/?acc=ERX140427
+Sample		Accession: GSM993606	ID: 300993606
