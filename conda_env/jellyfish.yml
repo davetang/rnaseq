@@ -1,0 +1,8 @@
+name: jellyfish
+channels:
+  - bioconda
+  - anaconda
+  - conda-forge
+  - defaults
+dependencies:
+  - jellyfish
