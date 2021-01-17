@@ -23,5 +23,13 @@ ${hisat2} --dta \
    -U ${fasta} |
    ${samtools} sort -O BAM > hisat2_k20.bam
 
+${hisat2} --dta \
+   -f \
+   -p ${num_threads} \
+   -k 20 \
+   -x ${index} \
+   -U ${fasta} |
+   ${samtools} sort -O BAM > hisat2_k20_2.bam
+
 exit 0
 

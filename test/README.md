@@ -35,4 +35,5 @@ HISAT2:
 
 * HISAT2 will map reads to up to 10 places by default; reads mapping to more than 10 places will be mapped by only 10 locations are listed
 * Use the parameter `-k` to map reads up to *k* times; reads mapping to more than *k* times will be mapped by only *k* locations are listed
+* When reporting reads mapping to more than *k* times, reported locations seem to be deterministic, which suggests that the first *k* locations are reported
 
