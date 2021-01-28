@@ -35,10 +35,14 @@ cat sample_metadata.txt |
 # fetch runinfo
 bash get_runinfo.txt
 
-# get run IDs
+# save metadata
+head -1 ERX140426.runinfo.txt > sample_metadata.csv
+cat *.runinfo.txt | grep ERR >> sample_metadata.csv
+
+# save run IDs
 cat *.runinfo.txt | grep ERR | cut -f1 -d',' > run_id.txt
 
-# remove runinfo
+# clean up
 rm *.runinfo.txt
 ```
 
