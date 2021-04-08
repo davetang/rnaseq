@@ -20,5 +20,19 @@ bwa mem \
    ${fasta} |
    ${samtools} sort -@ ${num_threads} -O BAM > bwa_h10.bam
 
+bwa mem \
+   -t ${num_threads} \
+   -h 203 \
+   ${index} \
+   ${fasta} |
+   ${samtools} sort -@ ${num_threads} -O BAM > bwa_h203.bam
+
+bwa mem \
+   -t ${num_threads} \
+   -h 500 \
+   ${index} \
+   ${fasta} |
+   ${samtools} sort -@ ${num_threads} -O BAM > bwa_h500.bam
+
 exit 0
 
