@@ -2,53 +2,74 @@
 
 set -euo pipefail
 
-if ! [ -x "$(command -v wget)" ]; then
-  >&2 echo 'Please install wget'
-  exit 1
-fi
+check_depend (){
+   tool=$1
+   if [[ ! -x $(command -v ${tool}) ]]; then
+     >&2 echo Could not find ${tool}
+     exit 1
+   fi
+}
 
-if ! [ -x "$(command -v unzip)" ]; then
-  >&2 echo 'Please install unzip'
-  exit 1
-fi
+dependencies=(wget unzip)
+for tool in ${dependencies[@]}; do
+   check_depend ${tool}
+done
 
-case "$OSTYPE" in
+case ${OSTYPE} in
    darwin*)
-      >&2 echo "Preparing binaries for macOS"
-      if [[ ! -e hisat2-2.2.0 ]]; then
+      >&2 echo Downloading binaries for macOS
+      if [[ ! -d hisat2-2.2.0 ]]; then
          wget -q -c https://cloud.biohpc.swmed.edu/index.php/s/hisat2-220-OSX_x86_64/download -O hisat2-2.2.0-OSX_x86_64.zip
          unzip -q hisat2-2.2.0-OSX_x86_64.zip
          rm hisat2-2.2.0-OSX_x86_64.zip
       fi
-      if [[ ! -e stringtie-2.1.4.OSX_x86_64 ]]; then
+      >&2 echo Finished downloading hisat2
+      if [[ ! -d stringtie-2.1.4.OSX_x86_64 ]]; then
          wget -q -c http://ccb.jhu.edu/software/stringtie/dl/stringtie-2.1.4.OSX_x86_64.tar.gz
          tar -xzf stringtie-2.1.4.OSX_x86_64.tar.gz
          rm stringtie-2.1.4.OSX_x86_64.tar.gz
       fi
+      >&2 echo Finished downloading stringtie
       if [[ ! -e STAR ]]; then
          wget -q -c https://github.com/alexdobin/STAR/blob/master/bin/MacOSX_x86_64/STAR?raw=true -O STAR
          chmod 755 STAR
       fi
+      >&2 echo Finished downloading STAR
+      if [[ ! -d kallisto ]]; then
+         wget -q -c https://github.com/pachterlab/kallisto/releases/download/v0.46.2/kallisto_mac-v0.46.2.tar.gz
+	 tar -xzf kallisto_mac-v0.46.2.tar.gz
+	 rm kallisto_mac-v0.46.2.tar.gz
+      fi
+      >&2 echo Finished downloading kallisto
    ;; 
    linux*)
-      >&2 echo "Preparing binaries for Linux"
-      if [[ ! -e hisat2-2.2.0 ]]; then
+      >&2 echo Downloading binaries for Linux
+      if [[ ! -d hisat2-2.2.0 ]]; then
          wget -q -c https://cloud.biohpc.swmed.edu/index.php/s/hisat2-220-Linux_x86_64/download -O hisat2-2.2.0-Linux_x86_64.zip
          unzip -q hisat2-2.2.0-Linux_x86_64.zip
          rm hisat2-2.2.0-Linux_x86_64.zip
       fi
-      if [[ ! -e stringtie-2.1.4.Linux_x86_64 ]]; then
+      >&2 echo Finished downloading hisat2
+      if [[ ! -d stringtie-2.1.4.Linux_x86_64 ]]; then
          wget -q -c http://ccb.jhu.edu/software/stringtie/dl/stringtie-2.1.4.Linux_x86_64.tar.gz
          tar -xzf stringtie-2.1.4.Linux_x86_64.tar.gz
          rm stringtie-2.1.4.Linux_x86_64.tar.gz
       fi
+      >&2 echo Finished downloading stringtie
       if [[ ! -e STAR ]]; then
          wget -q -c https://github.com/alexdobin/STAR/blob/master/bin/Linux_x86_64/STAR?raw=true -O STAR
          chmod 755 STAR
       fi
+      >&2 echo Finished downloading STAR
+      if [[ ! -d kallisto ]]; then
+         wget -q -c https://github.com/pachterlab/kallisto/releases/download/v0.46.2/kallisto_linux-v0.46.2.tar.gz
+	 tar -xzf kallisto_linux-v0.46.2.tar.gz
+	 rm kallisto_linux-v0.46.2.tar.gz
+      fi
+      >&2 echo Finished downloading kallisto
    ;;
   *)
-      echo "Not sure which exe to download for $OSTYPE"
+      >&2 echo Not sure which binaries to download for ${OSTYPE}
    ;;
 esac
 

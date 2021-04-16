@@ -3,7 +3,12 @@
 set -euo pipefail
 
 if ! [ -x "$(command -v wget)" ]; then
-  >&2 echo 'Please install wget'
+  >&2 echo Please install wget
+  exit 1
+fi
+
+if ! [ -x "$(command -v make)" ]; then
+  >&2 echo Could not find make
   exit 1
 fi
 

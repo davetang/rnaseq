@@ -3,9 +3,9 @@ raw/chrX_data.tar.gz
 raw/ftp.ccb.jhu.edu
 hisat2/*.bam
 hisat2/*.bai
-src/hisat2-2.2.0
-src/stringtie-2.1.3b.Linux_x86_64
+src/hisat2*
+src/stringtie*
+src/kallisto
 src/RSEM-1.3.3/
 src/STAR
-src/stringtie-2.1.4.OSX_x86_64/
 star_rsem/ERR*
