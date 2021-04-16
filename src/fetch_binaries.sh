@@ -27,6 +27,7 @@ case ${OSTYPE} in
       if [[ ! -d stringtie-2.1.4.OSX_x86_64 ]]; then
          wget -q -c http://ccb.jhu.edu/software/stringtie/dl/stringtie-2.1.4.OSX_x86_64.tar.gz
          tar -xzf stringtie-2.1.4.OSX_x86_64.tar.gz
+	 mv stringtie-2.1.4.OSX_x86_64 stringtie-2.1.4
          rm stringtie-2.1.4.OSX_x86_64.tar.gz
       fi
       >&2 echo Finished downloading stringtie
@@ -53,6 +54,7 @@ case ${OSTYPE} in
       if [[ ! -d stringtie-2.1.4.Linux_x86_64 ]]; then
          wget -q -c http://ccb.jhu.edu/software/stringtie/dl/stringtie-2.1.4.Linux_x86_64.tar.gz
          tar -xzf stringtie-2.1.4.Linux_x86_64.tar.gz
+	 mv stringtie-2.1.4.Linux_x86_64 stringtie-2.1.4
          rm stringtie-2.1.4.Linux_x86_64.tar.gz
       fi
       >&2 echo Finished downloading stringtie
