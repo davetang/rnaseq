@@ -18,6 +18,7 @@ for r1 in $(ls ../raw/chrX_data/samples/*_1.fastq.gz); do
       -o ${prefix} \
       -b 100 \
       ${r1} ${r2}
+   rm ${prefix}/abundance.h5
 done
 
 >&2 echo Done

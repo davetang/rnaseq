@@ -13,5 +13,5 @@ src/samtools
 
 # results
 star_rsem/ERR*
-hisat2/ERR*
+hisat_stringtie/ERR*
 kallisto/ERR*

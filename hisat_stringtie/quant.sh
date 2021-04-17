@@ -8,7 +8,7 @@ if [[ ! -e ../src/stringtie-2.1.4/stringtie ]]; then
 fi
 
 stringtie=../src/stringtie-2.1.4/stringtie
-gtf=../raw/chrX_data/genes/chrX.gtf
+gtf=../raw/chrX_data/genes/gencode.v37.annotation.chrx.gtf
 num_threads=8
 index=../raw/chrX_data/indexes/hisat2_index/chrX_tran
 

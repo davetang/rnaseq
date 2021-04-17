@@ -1,0 +1,122 @@
+---
+title: "Differential gene expression using EBSeq"
+author: "Dave Tang"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(tximport)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Use [tximport](https://bioconductor.org/packages/release/bioc/html/tximport.html) to load expression data.
+
+For RSEM, `abundance` contains the TPM values. We will store the expression data into `rsem_gene` and `rsem_tran` for the gene and transcript quantifications, respectively.
+
+```{r load_rsem, warning=FALSE, message=FALSE}
+rsem_gene_file <- list.files(path = "../star_rsem",
+                             pattern = "\\.rsem\\.genes\\.results\\.gz$",
+                             recursive = TRUE,
+                             full.names = TRUE)
+
+rsem_tran_file <- list.files(path = "../star_rsem",
+                             pattern = "\\.rsem\\.isoforms\\.results\\.gz$",
+                             recursive = TRUE,
+                             full.names = TRUE)
+
+my_sample <- sub(pattern = "(.*)_.*", replacement = "\\1", x = basename(rsem_tran_file))
+
+rsem_gene <- tximport(rsem_gene_file,
+                      type = "rsem",
+                      txIn = FALSE,
+                      txOut = FALSE)
+
+rsem_tran <- tximport(rsem_tran_file,
+                      type = "rsem",
+                      txIn = TRUE,
+                      txOut = TRUE)
+
+colnames(rsem_gene$abundance) <- my_sample
+colnames(rsem_tran$abundance) <- my_sample
+
+rsem_tran$abundance[1:6, 1:6]
+```
+
+For StringTie, we can import the transcript quantification data stored in the `t_data.ctab` files. The format is as follows:
+
+* t_id: numeric transcript id
+* chr, strand, start, end: genomic location of the transcript
+* t_name: Cufflinks-generated transcript id
+* num_exons: number of exons comprising the transcript
+* length: transcript length, including both exons and introns
+* gene_id: gene the transcript belongs to
+* gene_name: HUGO gene name for the transcript, if known
+* cov: per-base coverage for the transcript (available for each sample)
+* FPKM: Cufflinks-estimated FPKM for the transcript (available for each sample)
+
+We can use the coverage data to obtain the original raw counts by calculating `cov * transcript length / read length`. The `tximport` function does not support importing `abundance.tsv.gz` files.
+
+```{r load_stringtie, warning=FALSE, message=FALSE}
+st_tran_file <- list.files(path = "../hisat_stringtie",
+                           pattern = "t_data\\.ctab$",
+                           recursive = TRUE,
+                           full.names = TRUE)
+
+st_tran <- tximport(st_tran_file,
+                    type = "stringtie",
+                    txIn = TRUE,
+                    txOut = TRUE)
+
+my_sample <- sub(pattern = ".*(ERR\\d+)_chrX.*", replacement = "\\1", x = st_tran_file)
+
+colnames(st_tran$abundance) <- my_sample
+st_tran$abundance[1:6, 1:6]
+```
+
+Calculate TPM values.
+
+```{r st_tran_tpm}
+# divide read counts by the length of each gene in kilobases
+st_tran$tpm <- st_tran$counts / (st_tran$length / 1000)
+
+# sum all RPK values per sample and divide by 1,000,000
+tpm_scaling_factor <- apply(st_tran$tpm, 2, function(x) sum(x) / 1000000)
+# divide the RPK values by the scaling factor
+st_tran$tpm <- t(apply(st_tran$tpm, 1, function(x) x / tpm_scaling_factor))
+colnames(st_tran$tpm) <- my_sample
+```
+
+Load Kallisto results. (Note that if your directory contains HDF files `tximport` will try to read them regardless of specifying `abundance.tsv` files.)
+
+```{r load_kallisto, warning=FALSE, message=FALSE}
+kallisto_tran_file <- list.files(path = "../kallisto",
+                             pattern = "abundance\\.tsv",
+                             recursive = TRUE,
+                             full.names = TRUE)
+
+kallisto_tran <- tximport(kallisto_tran_file,
+                          type = "kallisto",
+                          txIn = TRUE,
+                          txOut = TRUE)
+
+my_sample <- sub(pattern = ".*(ERR\\d+)_chrX.*", replacement = "\\1", x = kallisto_tran_file)
+
+colnames(kallisto_tran$abundance) <- my_sample
+kallisto_tran$abundance[1:6, 1:6]
+```
+
+Correlate the expression values.
+
+```{r correlate}
+my_gene <- row.names(rsem_tran$abundance)
+for (my_sample in colnames(rsem_tran$abundance)){
+  my_df <- data.frame(RSEM = rsem_tran$abundance[my_gene, my_sample],
+                      StringTie = st_tran$tpm[my_gene, my_sample],
+                      Kallisto = kallisto_tran$abundance[my_gene, my_sample])
+  print(my_sample)
+  print(cor(my_df, method = "spearman"))
+  
+}
+```
