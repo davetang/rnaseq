@@ -4,16 +4,17 @@ set -euo pipefail
 
 num_threads=8
 gtf=chrX_data/genes/gencode.v37.annotation.chrx.gtf
+overhang=75
 
-if [[ ! -d chrX_data/indexes/star_index_74 ]]; then
+if [[ ! -d chrX_data/indexes/star_index_${overhang} ]]; then
    >&2 echo Building STAR index
    ../src/STAR \
       --runMode genomeGenerate \
-      --genomeDir chrX_data/indexes/star_index_74 \
+      --genomeDir chrX_data/indexes/star_index_${overhang} \
       --genomeFastaFiles chrX_data/genome/chrX.fa \
       --genomeSAindexNbases 12 \
       --sjdbGTFfile ${gtf} \
-      --sjdbOverhang 74 \
+      --sjdbOverhang ${overhang} \
       --runThreadN ${num_threads}
 fi
 

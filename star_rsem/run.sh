@@ -3,7 +3,8 @@
 set -euo pipefail
 
 thread=8
-star_index=../raw/chrX_data/indexes/star_index_74
+overhang=75
+star_index=../raw/chrX_data/indexes/star_index_${overhang}
 rsem_ref=../raw/chrX_data/indexes/rsem_reference/chrX
 
 for r1 in $(ls ../raw/chrX_data/samples/*1.fastq.gz); do
