@@ -1,8 +1,17 @@
 ## README
 
-A workflow to test the multimapping behaviour of HISAT2 and STAR (and BWA). We will find repeated sequence on chromosome X using `jellyfish` and map them back using various aligners.
+Test the multimapping behaviour of several short-read aligners including: HISAT2, STAR, and BWA MEM. We will use `jellyfish` to find shorter repeated sequences and then use the aligners to map the repeated sequences back to the full length reference.
 
-Create the Conda environment if you haven't already and activate it before running the following commands.
+## Creating repeats
+
+If you use Debian or Ubuntu, you can install `jellyfish` using `apt`.
+
+```bash
+sudo apt update
+sudo apt install jellyfish
+```
+
+Otherwise, you can use Conda; you will need to create the Conda environment, if you haven't already, and activate it before running the following commands.
 
 ```bash
 conda activate jellyfish
@@ -39,7 +48,9 @@ cat eg.fa | grep "^>" | wc -l
 rm mer_counts.jf mer_counts_dumps.fa
 ```
 
-Map with STAR and HISAT2 (and BWA) using various parameters.
+## Mapping
+
+Map with STAR, HISAT2, and BWA using various parameters.
 
 ```bash
 ./map_star.sh
@@ -47,6 +58,39 @@ Map with STAR and HISAT2 (and BWA) using various parameters.
 
 # for BWA, you need to create the index files in ../raw/chrX_data/genome/
 ./map_bwa.sh
+```
+
+## Unmapped reads
+
+Use `samtools` to check for unmapped reads.
+
+Check for unmapped reads using HISAT2.
+
+```bash
+samtools view -f 4 hisat2_default.bam
+# no output
+```
+
+Check for unmapped reads using STAR when no using `--outSAMunmapped Within`.
+
+```bash
+samtools view -f 4 multimap_20.Aligned.out.sam
+# no output
+```
+
+Check for unmapped reads using STAR when using `--outSAMunmapped Within`.
+
+```bash
+samtools view -f 4 multimap_20_unmapped.Aligned.out.sam  | wc -l
+1205
+```
+
+Check for unmapped reads using BWA.
+
+
+```bash
+samtools view -f 4 bwa_default.bam
+# no output
 ```
 
 ## Summary
