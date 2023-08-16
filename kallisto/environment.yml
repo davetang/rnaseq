@@ -1,0 +1,8 @@
+name: kallisto
+channels:
+  - bioconda
+  - conda-forge
+  - anaconda
+  - defaults
+dependencies:
+  - kallisto=0.50.0
