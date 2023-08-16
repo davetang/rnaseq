@@ -1,0 +1,4 @@
+*.fastq.gz
+*.fa.gz
+*.idx
+output
