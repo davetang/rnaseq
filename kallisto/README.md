@@ -16,6 +16,14 @@ wget -c https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_44/gen
 kallisto index -t 8 -i gencode.v44.idx gencode.v44.transcripts.fa.gz
 ```
 
+If you get a `Illegal instruction` error, try downloading the binary from the
+[GitHub repo](https://github.com/pachterlab/kallisto/releases/tag/v0.50.0).
+
+```console
+wget https://github.com/pachterlab/kallisto/releases/download/v0.50.0/kallisto_linux-v0.50.0.tar.gz
+tar -xzf kallisto_linux-v0.50.0.tar.gz
+```
+
 Quantification.
 
 ```console
