@@ -2,9 +2,8 @@
 
 set -euo pipefail
 
-if [[ ! -d ftp.ccb.jhu.edu ]]; then
-   wget -c -r ftp://ftp.ccb.jhu.edu/pub/RNAseq_protocol
-   ln -s ftp.ccb.jhu.edu/pub/RNAseq_protocol/chrX_data.tar.gz
+if [[ ! -e chrX_data.tar.gz ]]; then
+   wget -c https://davetang.org/file/chrX_data.tar.gz
    tar xvzf chrX_data.tar.gz
 fi
 
@@ -27,4 +26,3 @@ fi
 
 >&2 echo Done
 exit 0
-
