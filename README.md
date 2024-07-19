@@ -1,19 +1,21 @@
 ## Table of Contents
 
-  - [RNA-seq pipelines](#rna-seq-pipelines)
-  - [Setup](#setup)
-  - [Test data](#test-data)
-  - [Comparing quantifications](#comparing-quantifications)
-  - [nf-core/rnaseq](#nf-corernaseq)
-  - [Papers](#papers)
+    - [RNA-seq pipelines](#rna-seq-pipelines)
+    - [Setup](#setup)
+    - [Test data](#test-data)
+    - [Comparing quantifications](#comparing-quantifications)
+    - [nf-core/rnaseq](#nf-corernaseq)
+      - [Download reference transcriptome](#download-reference-transcriptome)
+      - [ERR164549](#err164549)
+    - [Papers](#papers)
 
-## RNA-seq pipelines
+### RNA-seq pipelines
 
 * [HISAT2 + StringTie2 pipeline](https://davetang.org/muse/2017/10/25/getting-started-hisat-stringtie-ballgown/)
 * [STAR, Cufflinks, RSEM](https://pubmed.ncbi.nlm.nih.gov/27662878/)
 * [Kallisto](https://pachterlab.github.io/kallisto/starting)
 
-## Setup
+### Setup
 
 1. In `raw` run `./fetch_data.sh` and then `./create_index.sh`.
 2. In `src` run `./fetch_binaries.sh` (requires macOS or Linux), `./setup_samtools.sh`, and `./setup_rsem.sh` (requires various libraries for compiling).
@@ -21,7 +23,7 @@
 4. STAR and RSEM can be run from `star_rsem` by running `./run.sh`.
 5. Kallisto can be run from `kallisto` by running `./quant.sh`.
 
-## Test data
+### Test data
 
 The data used to compare the workflows is from [Transcript-level expression analysis of RNA-seq experiments with HISAT, StringTie, and Ballgown](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5032908/). Each FASTQ file is named using the SRA RUN IDs.
 
@@ -50,11 +52,11 @@ ERR188044,2012-11-07 04:42:08,2012-11-07 04:41:56,36349964,5525194528,36349964,1
 
 From the metadata we can see the that this run ID belongs to the SRA Study [ERP001942](https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?study=ERP001942), which is the "RNA-sequencing of 465 lymphoblastoid cell lines from the 1000 Genomes".
 
-## Comparing quantifications
+### Comparing quantifications
 
 The R Markdown document `compare_quant.Rmd` in `analysis` compares the quantification results.
 
-## nf-core/rnaseq
+### nf-core/rnaseq
 
 > [nf-core/rnaseq](https://github.com/nf-core/RNAseq) is a bioinformatics pipeline that can be used to analyse RNA sequencing data obtained from organisms with a reference genome and annotation. It takes a samplesheet and FASTQ files as input, performs quality control (QC), trimming and (pseudo-)alignment, and produces a gene expression matrix and extensive QC report.
 
@@ -89,7 +91,7 @@ CPU hours   : 0.4
 Succeeded   : 194
 ```
 
-### Download reference transcriptome
+#### Download reference transcriptome
 
 [Download Ensembl references](https://nf-co.re/rnaseq/3.14.0/docs/usage/#reference-genome-options).
 
@@ -100,7 +102,7 @@ wget -c ftp://ftp.ensembl.org/pub/release-${RELEASE}/fasta/homo_sapiens/dna/Homo
 wget -c "ftp://ftp.ensembl.org/pub/release-${RELEASE}/gtf/homo_sapiens/Homo_sapiens.GRCh38.${RELEASE}.gtf.gz"
 ```
 
-### ERR164549
+#### ERR164549
 
 [Download data](https://github.com/davetang/research_parasite?tab=readme-ov-file#example) and prepare `samplesheet.csv`.
 
@@ -131,7 +133,7 @@ nextflow run ${HOME}/nf-core/rnaseq/3_14_0/main.nf \
 ```
 
 
-## Papers
+### Papers
 
 Papers to read when deciding choice of tool, gene mdoels, and gene quantification method for RNA-seq experiments.
 
