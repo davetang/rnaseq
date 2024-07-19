@@ -121,6 +121,10 @@ set -euo pipefail
 export NXF_SINGULARITY_CACHEDIR=${HOME}/nf-core/sif
 
 nextflow run ${HOME}/nf-core/rnaseq/3_14_0/main.nf \
+    -resume \
+    -with-report execution_report.html \
+    -with-trace \
+    -with-dag flowchart.html \
     --input samplesheet.csv \
     --outdir results \
     --fasta ~/data/ensembl/release-112/Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz \
@@ -132,6 +136,24 @@ nextflow run ${HOME}/nf-core/rnaseq/3_14_0/main.nf \
     --max_memory 60GB
 ```
 
+Check log
+
+```console
+nextflow log
+```
+```
+TIMESTAMP               DURATION        RUN NAME        STATUS  REVISION ID     SESSION ID                              COMMAND
+2024-07-19 18:29:51     5h 38m 16s      small_ekeblad   OK      746820de9b      e2b25984-4ca4-4cc1-9a2f-c47c3da54108    nextflow run /home/dtang/nf-core/rnaseq/3_14_0/main.nf -resume -with-report execution_report.html -with-trace -with-dag flowchart.html --input samplesheet.csv --outdir results --fasta /home/dtang/data/ensembl/release-112/Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz --gtf /home/dtang/data/ensembl/release-112/Homo_sapiens.GRCh38.112.gtf.gz --aligner star_rsem --save_reference -profile singularity --max_cpus 6 --max_memory 60GB
+```
+
+[STAR + RSEM](https://nf-co.re/rnaseq/3.14.0/docs/output/#star-via-rsem) results:
+
+* `rsem.merged.gene_counts.tsv`: Matrix of gene-level raw counts across all samples.
+* `rsem.merged.gene_tpm.tsv`: Matrix of gene-level TPM values across all samples.
+* `rsem.merged.transcript_counts.tsv`: Matrix of isoform-level raw counts across all samples.
+* `rsem.merged.transcript_tpm.tsv`: Matrix of isoform-level TPM values across all samples.
+* `*.genes.results`: RSEM gene-level quantification results for each sample.
+* `*.isoforms.results`: RSEM isoform-level quantification results for each sample.
 
 ### Papers
 
