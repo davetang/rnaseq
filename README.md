@@ -89,6 +89,48 @@ CPU hours   : 0.4
 Succeeded   : 194
 ```
 
+### Download reference transcriptome
+
+[Download Ensembl references](https://nf-co.re/rnaseq/3.14.0/docs/usage/#reference-genome-options).
+
+```console
+RELEASE=$(curl -s 'http://rest.ensembl.org/info/software?content-type=application/json' | grep -o '"release":[0-9]*' | cut -d: -f2)
+mkdir release-${RELEASE} && cd release-${RELEASE}
+wget -c ftp://ftp.ensembl.org/pub/release-${RELEASE}/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz
+wget -c "ftp://ftp.ensembl.org/pub/release-${RELEASE}/gtf/homo_sapiens/Homo_sapiens.GRCh38.${RELEASE}.gtf.gz"
+```
+
+### ERR164549
+
+[Download data](https://github.com/davetang/research_parasite?tab=readme-ov-file#example) and prepare `samplesheet.csv`.
+
+```
+sample,fastq_1,fastq_2,strandedness
+ERR164549,/home/dtang/data/ERR164549/ERR164549_1.fastq.gz,/home/dtang/data/ERR164549/ERR164549_2.fastq.gz,auto
+```
+
+Run.
+
+```console
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+export NXF_SINGULARITY_CACHEDIR=${HOME}/nf-core/sif
+
+nextflow run ${HOME}/nf-core/rnaseq/3_14_0/main.nf \
+    --input samplesheet.csv \
+    --outdir results \
+    --fasta ~/data/ensembl/release-112/Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz \
+    --gtf ~/data/ensembl/release-112/Homo_sapiens.GRCh38.112.gtf.gz \
+    --aligner star_rsem \
+    --save_reference \
+    -profile singularity \
+    --max_cpus 6 \
+    --max_memory 60GB
+```
+
+
 ## Papers
 
 Papers to read when deciding choice of tool, gene mdoels, and gene quantification method for RNA-seq experiments.
