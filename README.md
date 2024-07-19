@@ -1,3 +1,12 @@
+## Table of Contents
+
+  - [RNA-seq pipelines](#rna-seq-pipelines)
+  - [Setup](#setup)
+  - [Test data](#test-data)
+  - [Comparing quantifications](#comparing-quantifications)
+  - [nf-core/rnaseq](#nf-corernaseq)
+  - [Papers](#papers)
+
 ## RNA-seq pipelines
 
 * [HISAT2 + StringTie2 pipeline](https://davetang.org/muse/2017/10/25/getting-started-hisat-stringtie-ballgown/)
@@ -45,6 +54,24 @@ From the metadata we can see the that this run ID belongs to the SRA Study [ERP0
 
 The R Markdown document `compare_quant.Rmd` in `analysis` compares the quantification results.
 
+## nf-core/rnaseq
+
+> [nf-core/rnaseq](https://github.com/nf-core/RNAseq) is a bioinformatics pipeline that can be used to analyse RNA sequencing data obtained from organisms with a reference genome and annotation. It takes a samplesheet and FASTQ files as input, performs quality control (QC), trimming and (pseudo-)alignment, and produces a gene expression matrix and extensive QC report.
+
+To use nf-core/rnaseq, first install `nf-core`.
+
+```console
+pip install nf-core
+```
+
+Download nf-core/rnaseq and the necessary Singularity images using `nf-core`. This takes some time, so go get a coffee/drink/etc.
+
+```console
+export NXF_SINGULARITY_CACHEDIR=${HOME}/nf-core/sif
+
+nf-core download rnaseq -r 3.14.0 --outdir ${HOME}/nf-core/rnaseq --compress none --container-system singularity -p 4
+```
+
 ## Papers
 
 Papers to read when deciding choice of tool, gene mdoels, and gene quantification method for RNA-seq experiments.
@@ -55,4 +82,3 @@ Papers to read when deciding choice of tool, gene mdoels, and gene quantificatio
 * [A benchmark for RNA-seq quantification pipelines](https://pubmed.ncbi.nlm.nih.gov/27107712/)
 
 Also checkout this [list of benchmarks](https://github.com/j-andrews7/awesome-bioinformatics-benchmarks#rna-seq).
-
