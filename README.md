@@ -1,13 +1,13 @@
 ## Table of Contents
 
-    - [RNA-seq pipelines](#rna-seq-pipelines)
-    - [Setup](#setup)
-    - [Test data](#test-data)
-    - [Comparing quantifications](#comparing-quantifications)
-    - [nf-core/rnaseq](#nf-corernaseq)
-      - [Download reference transcriptome](#download-reference-transcriptome)
-      - [ERR164549](#err164549)
-    - [Papers](#papers)
+- [RNA-seq pipelines](#rna-seq-pipelines)
+- [Setup](#setup)
+- [Test data](#test-data)
+- [Comparing quantifications](#comparing-quantifications)
+- [nf-core/rnaseq](#nf-corernaseq)
+  - [Download reference transcriptome](#download-reference-transcriptome)
+  - [ERR164549](#err164549)
+- [Papers](#papers)
 
 ### RNA-seq pipelines
 
