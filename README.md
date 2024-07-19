@@ -72,6 +72,23 @@ export NXF_SINGULARITY_CACHEDIR=${HOME}/nf-core/sif
 nf-core download rnaseq -r 3.14.0 --outdir ${HOME}/nf-core/rnaseq --compress none --container-system singularity -p 4
 ```
 
+After downloading run a test; [install](https://www.nextflow.io/docs/latest/install.html) Nextflow if you haven't already.
+
+```console
+export NXF_SINGULARITY_CACHEDIR=${HOME}/nf-core/sif
+nextflow run ${HOME}/nf-core/rnaseq/3_14_0/main.nf -profile test,singularity --outdir rnaseq_test_output
+```
+
+If everything completed successfully, you should see the following:
+
+```
+-[nf-core/rnaseq] Pipeline completed successfully -
+Completed at: 19-Jul-2024 04:30:21
+Duration    : 5m 7s
+CPU hours   : 0.4
+Succeeded   : 194
+```
+
 ## Papers
 
 Papers to read when deciding choice of tool, gene mdoels, and gene quantification method for RNA-seq experiments.
