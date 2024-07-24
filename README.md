@@ -2,6 +2,7 @@
 
   - [Basics](#basics)
   - [Core concepts](#core-concepts)
+    - [cDNA libraries](#cdna-libraries)
   - [RNA-seq pipelines](#rna-seq-pipelines)
   - [Setup](#setup)
   - [Test data](#test-data)
@@ -29,6 +30,23 @@ Another important point is that it is not possible to sequence and count **all**
 * A **sequencing read** is the sequence of a fragment. Most times reads come in pairs, which is known as paired-end sequencing, and sometimes it is possible for both reads to completely cover the fragment, i.e., overlapping reads.
 
 Reads are typically aggregated together in a transcript/gene manner; reads belonging to the same transcript/gene are grouped together. In RNA-seq, reads are usually mapped to a known reference but if a reference does not exist, reads can be clustered together based on their sequence similarity.
+
+### cDNA libraries
+
+A cDNA library should contain all representative sequences of an mRNA population. Furthermore, the cDNA sequences should be full-length copies of the original mRNA. Therefore the construction of a high quality cDNA library is essential for RNA-seq. A cDNA clone (one particular copy in the library) represents the fully processed RNA sequence generated from the genomic sequence.
+
+There are many procedures for synthesising cDNA to create cDNA libraries and many focus on maximising the amount of cDNA produced from limited starting amounts of mRNA. The completeness of the cDNA synthesis is variable and unpredictable. This variation can be introduced during the following steps in the construction protocol:
+
+* mRNA isolation
+* First-strand cDNA synthesis, and
+* Second-strand cDNA synthesis
+* RNase contamination
+
+The first-strand cDNA synthesis step relies on the reverse transcription of RNA and the reverse transcriptase used can create fluctuations in the quantity and quality of the first-strand cDNA.
+
+There are many different protocols for second-strand synthesis, such as hairpin-primed synthesis and the Gubler and Hoffman procedure.
+
+Once second-strand synthesis is complete, double-stranded cDNA can be cloned and later sequenced as a cDNA library.
 
 ## RNA-seq pipelines
 
