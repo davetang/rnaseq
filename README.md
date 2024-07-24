@@ -1,7 +1,7 @@
 ## Table of Contents
 
-- [Table of Contents](#table-of-contents)
   - [Basics](#basics)
+  - [Core concepts](#core-concepts)
   - [RNA-seq pipelines](#rna-seq-pipelines)
   - [Setup](#setup)
   - [Test data](#test-data)
@@ -21,6 +21,14 @@ RNA molecules in a population of cells (or homogenised tissue) are reverse compl
 When most people are talking about RNA sequencing (RNA-seq), they are usually referring to the study of the abundances and how they differ under different conditions. More specifically, the main goal is to quantify systematic changes from different conditions and to assess the statistical significance of the differences. Systematic changes need to be distinguished from sampling and technical variances.
 
 Another important point is that it is not possible to sequence and count **all** RNA molecules in a sample because the protocols are not 100% efficient; RNA and their intermediates get lost during library preparation. Instead a statistical sample is produced, in the same way a census is a sample of the population. The amount to sample, i.e., how deep should we sequence, depends on the purpose of the study and also on the complexity of the biological sample, i.e., how many different species of RNA exist. The RNA-seq protocol to use is also dependent on the purpose of the study, since some protocols can exclude the class of RNA that you may be interested in studying.
+
+## Core concepts
+
+* A **sequencing library** is the collection of cDNA molecules used as input for the sequencing machine
+* **Fragments** are the molecules that are sequenced. Since most widely used sequencers can only deal with molecules of length 300-1000 nucleotides, longer cDNA molecules are fragmented into this size range.
+* A **sequencing read** is the sequence of a fragment. Most times reads come in pairs, which is known as paired-end sequencing, and sometimes it is possible for both reads to completely cover the fragment, i.e., overlapping reads.
+
+Reads are typically aggregated together in a transcript/gene manner; reads belonging to the same transcript/gene are grouped together. In RNA-seq, reads are usually mapped to a known reference but if a reference does not exist, reads can be clustered together based on their sequence similarity.
 
 ## RNA-seq pipelines
 
