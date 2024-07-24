@@ -18,7 +18,9 @@ RNA molecules in a population of cells (or homogenised tissue) are reverse compl
 1. The output of the cDNA sequence
 2. The abundances of the different cDNA sequences
 
-When most people are talking about RNA sequencing (RNA-seq), they are usually referring to the study of the abundances and how they differ under different conditions.
+When most people are talking about RNA sequencing (RNA-seq), they are usually referring to the study of the abundances and how they differ under different conditions. More specifically, the main goal is to quantify systematic changes from different conditions and to assess the statistical significance of the differences. Systematic changes need to be distinguished from sampling and technical variances.
+
+Another important point is that it is not possible to sequence and count **all** RNA molecules in a sample because the protocols are not 100% efficient; RNA and their intermediates get lost during library preparation. Instead a statistical sample is produced, in the same way a census is a sample of the population. The amount to sample, i.e., how deep should we sequence, depends on the purpose of the study and also on the complexity of the biological sample, i.e., how many different species of RNA exist. The RNA-seq protocol to use is also dependent on the purpose of the study, since some protocols can exclude the class of RNA that you may be interested in studying.
 
 ## RNA-seq pipelines
 
