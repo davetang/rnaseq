@@ -53,7 +53,7 @@ Once second-strand synthesis is complete, double-stranded cDNA can be cloned and
 
 ## Count data
 
-The count table tallies the number of reads mapped to genes/transcripts, where each row corresponds to a gene and each column to a particular sample. This table contains integer values and the value in the $i$th row and $j$th column indicates how many reads have been mapped to gene/transcript $i$ in sample $j$. These are raw counts of the sequencing reads and not some derived quantity, such as normalised counts; it is essential that the values are raw counts or else the statistical models typically used in RNA-seq analysis are not valid.
+The count table tallies the number of reads mapped to genes/transcripts, where each row corresponds to a gene and each column to a particular sample. This table contains integer values and the value in the $i$ th row and $j$ th column indicates how many reads have been mapped to gene/transcript $i$ in sample $j$. These are raw counts of the sequencing reads and not some derived quantity, such as normalised counts; it is essential that the values are raw counts or else the statistical models typically used in RNA-seq analysis are not valid.
 
 ### The challenges of count data
 
@@ -66,7 +66,7 @@ The count table tallies the number of reads mapped to genes/transcripts, where e
 
 Consider a sequencing library that contains $n_1$ fragments corresponding to gene 1, $n_2$ fragments for gene 2, and so on, with a total library size of $n = n_1 + n_2 + \ldots$. This library is then sequenced and the identity of $r$ randomly sampled fragments are determined. To paint a better mental picture, the following are some typical numbers. The number of genes will be in the order of tens of thousands; the value of $n$ depends on the amount of cells that were used to prepare the library and typically this is in the order of billions or trillions; and the number of reads $r$ is usually in the tens of millions, which is much smaller than $n$. Sequencing is sampling from $n$.
 
-From this we can conclude that the probability that a given read maps to the $i$th gene is $p_i = n_i/n$ (ratio of a specific fragment to all fragments) and this is independent of the outcomes for all the other reads. So we can model the number of reads for gene $i$ by a Poisson distribution, where the _rate_ of the Poisson process is the product of $p_i$, the initial proportion of fragments for the $i$th gene, times $r$, the number of reads sequenced; that is $\lambda_i = rp_i$.
+From this we can conclude that the probability that a given read maps to the $i$ th gene is $p_i = n_i/n$ (ratio of a specific fragment to all fragments) and this is independent of the outcomes for all the other reads. So we can model the number of reads for gene $i$ by a Poisson distribution, where the _rate_ of the Poisson process is the product of $p_i$, the initial proportion of fragments for the $i$ th gene, times $r$, the number of reads sequenced; that is $\lambda_i = rp_i$.
 
 In practice, we are usually not interested in modeling the read counts within a single library, but in comparing the counts between libraries. That is, we want to know whether any differences that we see between different biological conditions are larger than what we might expect even between biological replicates. Empirically, it turns out that replicate experiments vary more than the Poisson distribution predicts.
 
