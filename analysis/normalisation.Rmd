@@ -1,0 +1,85 @@
+---
+title: "RNA-seq normalisation"
+author: "Dave Tang"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(DESeq2)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Systematic biases affect the data generation and need to be accounted for when analysing the data. Unfortunately, the term **normalisation** is commonly used to describe this process even though it has nothing to do with the normal distribution nor does it involve a data transformation. The goal here is to identify the nature and magnitude of systematic biases and take them into account in our model-based analysis of the data.
+
+The most important systematic bias stems from variations in the total number of reads in each sample. If we have more reads for one library than for another, then we might assume that, everything else being equal, the counts are proportional to each other with some proportionality factor $s$. Naively, we could propose that a decent estimate of $s$ for each sample is simply given by the sum of the counts of all genes. However, it turns out that we can do better.
+
+Consider a dataset with five genes (A to E) and two samples (s1 and s2).
+
+```{r szfc_demo}
+szfcDemo = data.frame(
+  name = LETTERS[1:5],
+  s1 = c(2, 4, 6, 6,  8) * 10,
+  s2 = c(3, 6, 2, 9, 12) * 10
+)
+
+szfcDemo
+```
+
+If we "normalise" by the total sum, then gene C is down-regulated in sample 2 compared to sample 1, while the other genes are all somewhat up-regulated.
+
+```{r normalise_by_total}
+szfcDemo |>
+  mutate(
+    s1_norm = s1 / sum(s1),
+    s2_norm = s2 / sum(s2),
+    ratio = s2_norm / s1_norm
+  )
+```
+
+The slope of the blue line below represents the ratio between sample 2 and sample 1.
+
+```{r plot_normalise_by_count}
+ggplot(szfcDemo, aes(s1, s2, label = name)) +
+  geom_point() +
+  geom_text(hjust= 0.5, vjust = -0.6) +
+  theme_minimal() +
+  xlim(c(0, 128)) + ylim(c(0, 128)) + xlab("sample 1") + ylab("sample 2") +
+  geom_abline(slope = with(szfcDemo, sum(s2) / sum(s1)), col = 'blue') +
+  NULL
+```
+
+Estimate size factor with DESeq2 using robust regression.
+
+```{r estimate_size_factor}
+szfcDemo |>
+  dplyr::select(s1, s2) |>
+  as.matrix() |>
+  DESeq2::estimateSizeFactorsForMatrix() -> sf
+
+sf
+```
+
+If we "normalise" by the size factors, then gene C is down-regulated in sample 2 compared to sample 1, while the other genes are all unchanged.
+
+```{r normalise_by_size_factor}
+szfcDemo |>
+  mutate(
+    s1_norm = s1 / sf['s1'],
+    s2_norm = s2 / sf['s2'],
+    ratio = s2_norm / s1_norm
+  )
+```
+
+The slope of the red line below represents the ratio between sample 2 and sample 1 using the size factors.
+
+```{r plot_normalise_by_size_factor}
+ggplot(szfcDemo, aes(s1, s2, label = name)) +
+  geom_point() +
+  geom_text(hjust= 0.5, vjust = -0.6) +
+  theme_minimal() +
+  xlim(c(0, 128)) + ylim(c(0, 128)) + xlab("sample 1") + ylab("sample 2") +
+  geom_abline(slope = with(szfcDemo, sf['s2'] / sf['s1']), col = 'red') +
+  NULL
+```
