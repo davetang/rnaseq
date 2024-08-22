@@ -2,26 +2,28 @@
 
 set -euo pipefail
 
-if [[ ! -e ../src/kallisto/kallisto ]]; then
-  >&2 echo Please setup kallisto first
-  exit 1
+DIR=$(dirname $(realpath $0))
+RESULTS_DIR=${DIR}/../results
+BIN_DIR=${DIR}/../bin
+CHRX_DIR=${DIR}/../raw/chrX_data
+
+if [[ ! -d ${RESULTS_DIR}/kallisto ]]; then
+   mkdir ${RESULTS_DIR}/kallisto
 fi
+cd ${RESULTS_DIR}/kallisto
 
-kallisto=../src/kallisto/kallisto
+for R1 in $(ls ${CHRX_DIR}/samples/*_1.fastq.gz); do
+   PREFIX=$(basename ${R1} _1.fastq.gz)
+   R2=$(echo ${R1} | sed 's/_1.fastq.gz/_2.fastq.gz/')
 
-for r1 in $(ls ../raw/chrX_data/samples/*_1.fastq.gz); do
-   prefix=$(basename ${r1} _1.fastq.gz)
-   r2=$(echo ${r1} | sed 's/_1.fastq.gz/_2.fastq.gz/')
-   >&2 echo Quantifying ${prefix}
-   ${kallisto} quant \
-      -i ../raw/chrX_data/indexes/kallisto_index/transcripts.idx \
-      -o ${prefix} \
+   >&2 echo Quantifying ${PREFIX}
+   ${BIN_DIR}/kallisto/kallisto quant \
+      -i ${CHRX_DIR}/indexes/kallisto_index/transcripts.idx \
+      -o ${PREFIX} \
       -b 100 \
-      ${r1} ${r2}
-   rm ${prefix}/abundance.h5
+      ${R1} ${R2}
+   rm ${PREFIX}/abundance.h5
 done
 
 >&2 echo Done
-
 exit 0
-
