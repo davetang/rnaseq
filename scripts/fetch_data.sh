@@ -17,7 +17,8 @@ fi
 GENCODE_VER=46
 
 if [[ ! -e ${CHRX_DIR}/genes/gencode.v${GENCODE_VER}.annotation.gtf ]]; then
-   wget -c ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_${GENCODE_VER}/gencode.v${GENCODE_VER}.annotation.gtf.gz -O ${CHRX_DIR}/genes/gencode.v${GENCODE_VER}.annotation.gtf.gz
+   # wget -c ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_${GENCODE_VER}/gencode.v${GENCODE_VER}.annotation.gtf.gz -O ${CHRX_DIR}/genes/gencode.v${GENCODE_VER}.annotation.gtf.gz
+   wget -c https://davetang.org/file/gencode/Gencode_human/release_${GENCODE_VER}/gencode.v${GENCODE_VER}.annotation.gtf.gz -O ${CHRX_DIR}/genes/gencode.v${GENCODE_VER}.annotation.gtf.gz
    gunzip ${CHRX_DIR}/genes/gencode.v${GENCODE_VER}.annotation.gtf.gz
 
    cat ${CHRX_DIR}/genes/gencode.v${GENCODE_VER}.annotation.gtf \
@@ -32,7 +33,8 @@ else
 fi
 
 if [[ ! -e ${CHRX_DIR}/genes/gencode.v${GENCODE_VER}.transcripts.fa ]]; then
-   wget -c ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_${GENCODE_VER}/gencode.v${GENCODE_VER}.transcripts.fa.gz -O ${CHRX_DIR}/genes/gencode.v${GENCODE_VER}.transcripts.fa.gz
+   # wget -c ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_${GENCODE_VER}/gencode.v${GENCODE_VER}.transcripts.fa.gz -O ${CHRX_DIR}/genes/gencode.v${GENCODE_VER}.transcripts.fa.gz
+   wget -c https://davetang.org/file/gencode/Gencode_human/release_${GENCODE_VER}/gencode.v${GENCODE_VER}.transcripts.fa.gz -O ${CHRX_DIR}/genes/gencode.v${GENCODE_VER}.transcripts.fa.gz
    gunzip ${CHRX_DIR}/genes/gencode.v${GENCODE_VER}.transcripts.fa.gz
 
    ${DIR}/extract_fasta.pl -i ${CHRX_DIR}/genes/gencode.v${GENCODE_VER}.annotation.chrx.tid.txt -f ${CHRX_DIR}/genes/gencode.v${GENCODE_VER}.transcripts.fa > ${CHRX_DIR}/genes/gencode.v${GENCODE_VER}.transcripts.chrx.fa
