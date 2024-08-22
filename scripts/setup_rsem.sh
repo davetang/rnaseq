@@ -2,19 +2,22 @@
 
 set -euo pipefail
 
-if ! [ -x "$(command -v wget)" ]; then
-  >&2 echo Please install wget
-  exit 1
+VER=1.3.3
+URL=https://github.com/deweylab/RSEM/archive/v${VER}.tar.gz
+SCRIPT_DIR=$(dirname $(realpath $0))
+BIN_DIR=$(realpath ${SCRIPT_DIR}/../bin)
+
+if [[ -e ${BIN_DIR}/RSEM-${VER}/rsem-calculate-expression ]]; then
+   >&2 echo ${BIN_DIR}/rsem-calculate-expression already exists
+   exit
 fi
 
-if ! [ -x "$(command -v make)" ]; then
-  >&2 echo Could not find make
-  exit 1
-fi
-
-wget https://github.com/deweylab/RSEM/archive/v1.3.3.tar.gz -O RSEM-v1.3.3.tar.gz
-tar xzf RSEM-v1.3.3.tar.gz
-rm RSEM-v1.3.3.tar.gz
-cd RSEM-1.3.3 && make
+wget ${URL} -O ${BIN_DIR}/RSEM-v${VER}.tar.gz
+tar --directory ${BIN_DIR} -xzf ${BIN_DIR}/RSEM-v${VER}.tar.gz
+cd ${BIN_DIR}/RSEM-${VER} && make
 ./rsem-calculate-expression --version
+cd
+rm ${BIN_DIR}/RSEM-v${VER}.tar.gz
 
+>&2 echo Done
+exit 0
