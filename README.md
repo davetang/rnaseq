@@ -7,8 +7,8 @@
     - [The challenges of count data](#the-challenges-of-count-data)
     - [Dispersion](#dispersion)
   - [RNA-seq pipelines](#rna-seq-pipelines)
-  - [Setup](#setup)
   - [Test data](#test-data)
+  - [Processing](#processing)
   - [Comparing quantifications](#comparing-quantifications)
   - [nf-core/rnaseq](#nf-corernaseq)
     - [Download reference transcriptome](#download-reference-transcriptome)
@@ -78,14 +78,6 @@ Intuitively, what happens is that $p_i$, and therefore also $\lambda_i$, varies 
 * [STAR, Cufflinks, RSEM](https://pubmed.ncbi.nlm.nih.gov/27662878/)
 * [Kallisto](https://pachterlab.github.io/kallisto/starting)
 
-## Setup
-
-1. In `raw` run `./fetch_data.sh` and then `./create_index.sh`.
-2. In `src` run `./fetch_binaries.sh` (requires macOS or Linux), `./setup_samtools.sh`, and `./setup_rsem.sh` (requires various libraries for compiling).
-3. HISAT2 and StringTie2 can be run from `hisat_stringtie` by running `./map.sh` and then `./quant.sh`.
-4. STAR and RSEM can be run from `star_rsem` by running `./run.sh`.
-5. Kallisto can be run from `kallisto` by running `./quant.sh`.
-
 ## Test data
 
 The data used to compare the workflows is from [Transcript-level expression analysis of RNA-seq experiments with HISAT, StringTie, and Ballgown](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5032908/). Each FASTQ file is named using the SRA RUN IDs.
@@ -114,6 +106,50 @@ ERR188044,2012-11-07 04:42:08,2012-11-07 04:41:56,36349964,5525194528,36349964,1
 ```
 
 From the metadata we can see the that this run ID belongs to the SRA Study [ERP001942](https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?study=ERP001942), which is the "RNA-sequencing of 465 lymphoblastoid cell lines from the 1000 Genomes".
+
+## Processing
+
+First prepare the necessary tools; only `x86_64` and `amd64` architectures are supported.
+
+```console
+./scripts/fetch_binaries.sh
+
+# requires various libraries for compiling
+./scripts/setup_samtools.sh
+./scripts/setup_rsem.sh
+```
+
+Next download the testing data and transcript references.
+
+```console
+./scripts/fetch_data.sh
+```
+
+Create the indexes for the various tools.
+
+```console
+./scripts/create_index.sh
+```
+
+Run HISAT2 and StringTie2.
+
+```console
+./scripts/hisat_stringtie.sh
+```
+
+Run STAR and RSEM.
+
+```console
+./scripts/star_rsem.sh
+```
+
+Run Kallisto.
+
+```console
+./scripts/kallisto.sh
+```
+
+Results will be in `results`.
 
 ## Comparing quantifications
 
