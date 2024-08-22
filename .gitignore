@@ -8,6 +8,4 @@ bin
 share
 
 # results
-star_rsem/ERR*
-hisat_stringtie/ERR*
-kallisto/ERR*
+results
