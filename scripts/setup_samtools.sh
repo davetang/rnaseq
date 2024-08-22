@@ -8,7 +8,7 @@ URL=https://github.com/samtools/samtools/releases/download/${VER}/${TOOL}-${VER}
 SCRIPT_DIR=$(dirname $(realpath $0))
 OUTDIR=$(realpath ${SCRIPT_DIR}/..)
 
-if [[ -d ${OUTDIR}/bin/samtools ]]; then
+if [[ -e ${OUTDIR}/bin/samtools ]]; then
    >&2 echo ${OUTDIR}/samtools already exists
    exit
 fi
