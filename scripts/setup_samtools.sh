@@ -2,30 +2,31 @@
 
 set -euo pipefail
 
-tool=samtools
-ver=1.12
-url=https://github.com/samtools/samtools/releases/download/${ver}/${tool}-${ver}.tar.bz2
-dir=$(pwd)/${tool}
+VER=1.20
+TOOL=samtools
+URL=https://github.com/samtools/samtools/releases/download/${VER}/${TOOL}-${VER}.tar.bz2
+SCRIPT_DIR=$(dirname $(realpath $0))
+OUTDIR=$(realpath ${SCRIPT_DIR}/..)
 
-if [[ -d samtools ]]; then
-   >&2 echo samtools already exists
-   exit 0
-else
-   mkdir ${tool}
+if [[ -d ${OUTDIR}/bin/samtools ]]; then
+   >&2 echo ${OUTDIR}/samtools already exists
+   exit
 fi
 
-wget ${url}
-tar xjf ${tool}-${ver}.tar.bz2
-cd ${tool}-${ver}
-./configure --prefix=${dir}
+TMPDIR=$(mktemp -d)
+trap "rm -rf ${TMPDIR}" SIGINT SIGTERM
+
+cd ${TMPDIR}
+wget ${URL}
+tar xjf ${TOOL}-${VER}.tar.bz2
+cd ${TOOL}-${VER}
+./configure --prefix=${OUTDIR}
 make && make install
-cd ..
+cd
 
-rm -rf ${tool}-${ver} ${tool}-${ver}.tar.bz2
+rm -rf ${TMPDIR}
 
-${dir}/bin/samtools --version
+${OUTDIR}/bin/samtools --version
 
 >&2 echo Done
-
 exit 0
-

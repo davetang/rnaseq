@@ -5,6 +5,7 @@ raw/ftp.ccb.jhu.edu
 
 # tools
 bin
+share
 
 # results
 star_rsem/ERR*
