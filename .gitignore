@@ -2,6 +2,11 @@
 raw/chrX_data
 raw/chrX_data.tar.gz
 raw/ftp.ccb.jhu.edu
+samplesheet.csv
+
+# nf-core
+work
+.nextflow*
 
 # tools
 bin
