@@ -9,10 +9,10 @@ GENCODE_VER=46
 FASTA=$(realpath ${CHRX_DIR}/genome/chrX.fa)
 GTF=$(realpath ${CHRX_DIR}/genes/gencode.v${GENCODE_VER}.annotation.chrx.gtf)
 THREADS=6
-OUTDIR=$(realpath ${RESULTS_DIR}/nfcore_rnaseq)
+OUTDIR=$(realpath ${RESULTS_DIR})/nfcore_rnaseq
 
 if [[ ! -d ${OUTDIR} ]]; then
-   mkdir ${OUTDIR}
+   mkdir -p ${OUTDIR}
 fi
 
 export NXF_SINGULARITY_CACHEDIR=${HOME}/nf-core/sif
