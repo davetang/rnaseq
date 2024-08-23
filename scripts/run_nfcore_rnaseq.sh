@@ -9,6 +9,7 @@ GENCODE_VER=46
 FASTA=$(realpath ${CHRX_DIR}/genome/chrX.fa)
 GTF=$(realpath ${CHRX_DIR}/genes/gencode.v${GENCODE_VER}.annotation.chrx.gtf)
 THREADS=6
+MAXMEM=30GB
 OUTDIR=$(realpath ${RESULTS_DIR})/nfcore_rnaseq
 
 if [[ ! -d ${OUTDIR} ]]; then
@@ -34,7 +35,7 @@ nextflow run ${HOME}/nf-core/rnaseq/3_14_0/main.nf \
     --skip_stringtie \
     -profile singularity \
     --max_cpus ${THREADS} \
-    --max_memory 60GB
+    --max_memory ${MAXMEM}
 
 >&2 echo Done
 exit 0
