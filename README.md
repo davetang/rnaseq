@@ -12,7 +12,7 @@
   - [Comparing quantifications](#comparing-quantifications)
   - [nf-core/rnaseq](#nf-corernaseq)
     - [Download reference transcriptome](#download-reference-transcriptome)
-    - [GSE40419](#gse40419)
+    - [Running nf-core/rnaseq on the test data](#running-nf-corernaseq-on-the-test-data)
   - [Papers](#papers)
 
 ## Basics
@@ -165,7 +165,7 @@ To use nf-core/rnaseq, first install `nf-core`.
 pip install nf-core
 ```
 
-Download nf-core/rnaseq and the necessary Singularity images using `nf-core`. This takes some time, so go get a coffee/drink/etc.
+Download nf-core/rnaseq and the necessary Singularity images using `nf-core`; the images will be saved in `${HOME}/nf-core/sif`. This takes some time, so go get a coffee/drink/etc.
 
 ```console
 export NXF_SINGULARITY_CACHEDIR=${HOME}/nf-core/sif
@@ -201,54 +201,21 @@ wget -c ftp://ftp.ensembl.org/pub/release-${RELEASE}/fasta/homo_sapiens/dna/Homo
 wget -c "ftp://ftp.ensembl.org/pub/release-${RELEASE}/gtf/homo_sapiens/Homo_sapiens.GRCh38.${RELEASE}.gtf.gz"
 ```
 
-### GSE40419
+### Running nf-core/rnaseq on the test data
 
-[Download data](https://github.com/davetang/research_parasite?tab=readme-ov-file#example) and prepare `samplesheet.csv`.
-
-```
-sample,fastq_1,fastq_2,strandedness
-ERR164549,/home/dtang/data/GSE40419/ERR164549_1.fastq.gz,/home/dtang/data/GSE40419/ERR164549_2.fastq.gz,auto
-ERR164634,/home/dtang/data/GSE40419/ERR164634_1.fastq.gz,/home/dtang/data/GSE40419/ERR164634_2.fastq.gz,auto
-```
-
-Run.
+Generate `samplesheet.csv`.
 
 ```console
-#!/usr/bin/env bash
-
-set -euo pipefail
-
-export NXF_SINGULARITY_CACHEDIR=${HOME}/nf-core/sif
-
-nextflow run ${HOME}/nf-core/rnaseq/3_14_0/main.nf \
-    -resume \
-    -with-report execution_report.html \
-    -with-trace \
-    -with-dag flowchart.html \
-    --input samplesheet.csv \
-    --outdir results \
-    --fasta ~/data/ensembl/release-112/Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz \
-    --gtf ~/data/ensembl/release-112/Homo_sapiens.GRCh38.112.gtf.gz \
-    --aligner star_rsem \
-    --save_reference \
-    --skip_markduplicates \
-    --skip_dupradar \
-    --skip_deseq2_qc \
-    --skip_stringtie \
-    -profile singularity \
-    --max_cpus 6 \
-    --max_memory 60GB
+./scripts/create_samplesheet.pl > samplesheet.csv
 ```
 
-Success!
+Run it!
 
+```console
+./scripts/run_nfcore_rnaseq.sh
 ```
--[nf-core/rnaseq] Pipeline completed successfully -
-Completed at: 20-Jul-2024 22:37:14
-Duration    : 6h 34m 28s
-CPU hours   : 39.0
-Succeeded   : 61
-```
+
+The results will be in `results/nfcore_rnaseq`.
 
 Check log
 
@@ -256,9 +223,8 @@ Check log
 nextflow log
 ```
 ```
-nextflow log
-TIMESTAMP               DURATION        RUN NAME        STATUS  REVISION ID     SESSION ID                              COMMAND
-2024-07-20 16:02:46     6h 34m 29s      grave_ptolemy   OK      746820de9b      d6a78186-35e6-4b5a-9a6f-c1e8e4358110    nextflow run /home/dtang/nf-core/rnaseq/3_14_0/main.nf -resume -with-report execution_report.html -with-trace -with-dag flowchart.html --input samplesheet.csv --outdir results --fasta /home/dtang/data/ensembl/release-112/Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz --gtf /home/dtang/data/ensembl/release-112/Homo_sapiens.GRCh38.112.gtf.gz --aligner star_rsem --save_reference --skip_markduplicates --skip_dupradar --skip_deseq2_qc --skip_stringtie -profile singularity --max_cpus 6 --max_memory 60GB
+TIMESTAMP          	DURATION	RUN NAME   	STATUS	REVISION ID	SESSION ID                          	COMMAND
+2024-08-23 11:23:59	59m 7s  	cheesy_kare	OK    	746820de9b 	e0706fe4-e01a-4cfd-aef3-37cfd406f555	nextflow run /home/tan118/nf-core/rnaseq/3_14_0/main.nf -resume -with-report execution_report.html -with-trace -with-dag flowchart.html --input /home/tan118/github/rnaseq/samplesheet.csv --outdir /home/tan118/github/rnaseq/results/nfcore_rnaseq --fasta /home/tan118/github/rnaseq/raw/chrX_data/genome/chrX.fa --gtf /home/tan118/github/rnaseq/raw/chrX_data/genes/gencode.v46.annotation.chrx.gtf --aligner star_rsem --save_reference --skip_markduplicates --skip_dupradar --skip_deseq2_qc --skip_stringtie -profile singularity --max_cpus 6 --max_memory 30GB
 ```
 
 [STAR + RSEM](https://nf-co.re/rnaseq/3.14.0/docs/output/#star-via-rsem) results:
@@ -273,23 +239,23 @@ TIMESTAMP               DURATION        RUN NAME        STATUS  REVISION ID     
 Raw counts.
 
 ```console
-head -3 results/star_rsem/rsem.merged.transcript_counts.tsv
+head -3 results/nfcore_rnaseq/star_rsem/rsem.merged.gene_counts.tsv
 ```
 ```
-transcript_id   gene_id ERR164549       ERR164634
-ENST00000373020 ENSG00000000003 701.27  878.98
-ENST00000494424 ENSG00000000003 15.90   18.59
+gene_id	transcript_id(s)	ERR188044	ERR188104	ERR188234	ERR188245	ERR188257	ERR188273	ERR188337	ERR188383	ERR188401	ERR188428	ERR188454	ERR204916
+ENSG00000000003.16	ENST00000373020.9,ENST00000494424.1,ENST00000496771.5,ENST00000612152.4	38.00	22.00	3.00	0.00	8.00	8.00	22.00	12.00	9.00	1.00	5.00	5.00
+ENSG00000000005.6	ENST00000373031.5,ENST00000485971.1	0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00
 ```
 
 TPM normalised.
 
 ```console
-head -3 results/star_rsem/rsem.merged.transcript_tpm.tsv
+head -3 results/nfcore_rnaseq/star_rsem/rsem.merged.gene_tpm.tsv
 ```
 ```
-transcript_id   gene_id ERR164549       ERR164634
-ENST00000373020 ENSG00000000003 9.35    23.91
-ENST00000494424 ENSG00000000003 1.18    2.83
+gene_id	transcript_id(s)	ERR188044	ERR188104	ERR188234	ERR188245	ERR188257	ERR188273	ERR188337	ERR188383	ERR188401	ERR188428	ERR188454	ERR204916
+ENSG00000000003.16	ENST00000373020.9,ENST00000494424.1,ENST00000496771.5,ENST00000612152.4	10.83	8.73	0.57	0.00	5.02	4.26	12.98	3.70	2.12	0.38	1.45	4.29
+ENSG00000000005.6	ENST00000373031.5,ENST00000485971.1	0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00
 ```
 
 ## Papers
