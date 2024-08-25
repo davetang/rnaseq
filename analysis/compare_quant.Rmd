@@ -134,17 +134,35 @@ colnames(kallisto_tran$abundance) <- my_sample
 kallisto_tran$abundance[1:6, 1:6]
 ```
 
-Correlate the expression values.
+## Compare
 
-```{r correlate}
+Correlate the transcript expression values and plot results.
+
+```{r correlate_transcript}
 my_gene <- row.names(rsem_tran$abundance)
-for (my_sample in colnames(rsem_tran$abundance)){
-  my_df <- data.frame(
-    RSEM = rsem_tran$abundance[my_gene, my_sample],
-    StringTie = st_tran$tpm[my_gene, my_sample],
-    Kallisto = kallisto_tran$abundance[my_gene, my_sample]
+my_sample <- colnames(rsem_tran$abundance)
+
+purrr::map_df(my_sample, function(x){
+  my_rsem <- rsem_tran$abundance[my_gene, x]
+  my_st <- st_tran$tpm[my_gene, x]
+  my_kallisto <- kallisto_tran$abundance[my_gene, x]
+  
+  rsem_vs_st <- cor(my_rsem, my_st, method = "spearman")
+  rsem_vs_kallisto <- cor(my_rsem, my_kallisto, method = "spearman")
+  st_vs_kallisto <- cor(my_st, my_kallisto, method = "spearman")
+  
+  list(
+    RSEM_vs_StringTie = rsem_vs_st,
+    RSEM_vs_Kallisto = rsem_vs_kallisto,
+    StringTie_vs_Kallisto = st_vs_kallisto
   )
-  print(my_sample)
-  print(cor(my_df, method = "spearman"))
-}
+}) |>
+  dplyr::mutate(sample = my_sample) |>
+  dplyr::select(sample, everything()) -> transcript_res
+
+transcript_res |>
+  pivot_longer(-sample, names_to = "Comparison", values_to = "Spearman") |>
+  ggplot(aes(Comparison, Spearman)) +
+  geom_boxplot() +
+  theme_minimal()
 ```
