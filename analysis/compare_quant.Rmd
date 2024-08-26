@@ -60,6 +60,7 @@ rsem_tran <- tximport(
 colnames(rsem_gene$abundance) <- my_sample
 colnames(rsem_tran$abundance) <- my_sample
 
+rsem_gene$abundance[1:6, 1:6]
 rsem_tran$abundance[1:6, 1:6]
 ```
 
@@ -85,6 +86,18 @@ st_tran_file <- list.files(
   full.names = TRUE
 )
 
+# https://bioconductor.org/packages/devel/bioc/vignettes/tximport/inst/doc/tximport.html#StringTie
+tmp <- read_tsv(st_tran_file[1], show_col_types = FALSE)
+tx2gene <- tmp[, c("t_name", "gene_id")]
+
+st_gene <- tximport(
+  st_tran_file,
+  tx2gene = tx2gene,
+  type = "stringtie",
+  txIn = TRUE,
+  txOut = FALSE
+)
+
 st_tran <- tximport(
   st_tran_file,
   type = "stringtie",
@@ -94,6 +107,7 @@ st_tran <- tximport(
 
 my_sample <- sub(pattern = ".*(ERR\\d+)_chrX.*", replacement = "\\1", x = st_tran_file)
 
+colnames(st_gene$abundance) <- my_sample
 colnames(st_tran$abundance) <- my_sample
 st_tran$abundance[1:6, 1:6]
 ```
@@ -101,14 +115,21 @@ st_tran$abundance[1:6, 1:6]
 Calculate TPM values.
 
 ```{r st_tran_tpm}
-# divide read counts by the length of each gene in kilobases
-st_tran$tpm <- st_tran$counts / (st_tran$length / 1000)
+calc_tpm <- function(obj){
+  # divide read counts by the length of each gene in kilobases
+  obj$tpm <- obj$counts / (obj$length / 1000)
+  
+  # sum all RPK values per sample and divide by 1,000,000
+  tpm_scaling_factor <- apply(obj$tpm, 2, function(x) sum(x) / 1000000)
+  
+  # divide the RPK values by the scaling factor
+  obj$tpm <- t(apply(obj$tpm, 1, function(x) x / tpm_scaling_factor))
+  colnames(obj$tpm) <- my_sample
+  obj$tpm
+}
 
-# sum all RPK values per sample and divide by 1,000,000
-tpm_scaling_factor <- apply(st_tran$tpm, 2, function(x) sum(x) / 1000000)
-# divide the RPK values by the scaling factor
-st_tran$tpm <- t(apply(st_tran$tpm, 1, function(x) x / tpm_scaling_factor))
-colnames(st_tran$tpm) <- my_sample
+st_gene$tpm <- calc_tpm(st_gene)
+st_tran$tpm <- calc_tpm(st_tran)
 ```
 
 Load Kallisto results. (Note that if your directory contains HDF files `tximport` will try to read them regardless of specifying `abundance.tsv` files.)
@@ -121,6 +142,15 @@ kallisto_tran_file <- list.files(
   full.names = TRUE
 )
 
+# caveat: using tx2gene created from StringTie results
+kallisto_gene <- tximport(
+  kallisto_tran_file,
+  type = "kallisto",
+  tx2gene = tx2gene,
+  txIn = TRUE,
+  txOut = FALSE
+)
+
 kallisto_tran <- tximport(
   kallisto_tran_file,
   type = "kallisto",
@@ -130,11 +160,46 @@ kallisto_tran <- tximport(
 
 my_sample <- sub(pattern = ".*(ERR\\d+)_chrX.*", replacement = "\\1", x = kallisto_tran_file)
 
+colnames(kallisto_gene$abundance) <- my_sample
 colnames(kallisto_tran$abundance) <- my_sample
 kallisto_tran$abundance[1:6, 1:6]
 ```
 
-## Compare
+## Comparison
+
+### Different tools
+
+Correlate the gene expression values and plot results.
+
+```{r correlate_genes}
+my_gene <- row.names(rsem_gene$abundance)
+my_sample <- colnames(rsem_gene$abundance)
+
+purrr::map_df(my_sample, function(x){
+  my_rsem <- rsem_gene$abundance[my_gene, x]
+  my_st <- st_gene$tpm[my_gene, x]
+  my_kallisto <- kallisto_gene$abundance[my_gene, x]
+  
+  rsem_vs_st <- cor(my_rsem, my_st, method = "spearman")
+  rsem_vs_kallisto <- cor(my_rsem, my_kallisto, method = "spearman")
+  st_vs_kallisto <- cor(my_st, my_kallisto, method = "spearman")
+  
+  list(
+    RSEM_vs_StringTie = rsem_vs_st,
+    RSEM_vs_Kallisto = rsem_vs_kallisto,
+    StringTie_vs_Kallisto = st_vs_kallisto
+  )
+}) |>
+  dplyr::mutate(sample = my_sample) |>
+  dplyr::select(sample, everything()) -> gene_res
+
+gene_res |>
+  pivot_longer(-sample, names_to = "Comparison", values_to = "Spearman") |>
+  ggplot(aes(Comparison, Spearman)) +
+  geom_boxplot() +
+  theme_minimal() +
+  ggtitle("Spearman correlations between gene quantifications")
+```
 
 Correlate the transcript expression values and plot results.
 
@@ -164,5 +229,6 @@ transcript_res |>
   pivot_longer(-sample, names_to = "Comparison", values_to = "Spearman") |>
   ggplot(aes(Comparison, Spearman)) +
   geom_boxplot() +
-  theme_minimal()
+  theme_minimal() +
+  ggtitle("Spearman correlations between transcript quantifications")
 ```
