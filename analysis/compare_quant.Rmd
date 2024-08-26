@@ -27,38 +27,49 @@ BiocManager::install("tximport")
 For RSEM, `abundance` contains the TPM values. We will store the expression data into `rsem_gene` and `rsem_tran` for the gene and transcript quantifications, respectively.
 
 ```{r load_rsem, warning=FALSE, message=FALSE}
-rsem_gene_file <- list.files(
-  path = "../results/star_rsem",
-  pattern = "\\.rsem\\.genes\\.results\\.gz$",
-  recursive = TRUE,
-  full.names = TRUE
-)
+read_rsem_gene <- function(dir){
+  rsem_gene_file <- list.files(
+    path = dir,
+    pattern = "\\.genes\\.results",
+    recursive = TRUE,
+    full.names = TRUE
+  )
+  my_sample <- sub(pattern = "(.*)_.*", replacement = "\\1", x = basename(rsem_gene_file))
+  my_sample <- sub(pattern = ".genes.results", replacement = "", x = my_sample)
+  rsem_gene <- tximport(
+    rsem_gene_file,
+    type = "rsem",
+    txIn = FALSE,
+    txOut = FALSE
+  )
+  colnames(rsem_gene$abundance) <- my_sample
+  rsem_gene
+}
 
-rsem_tran_file <- list.files(
-  path = "../results/star_rsem",
-  pattern = "\\.rsem\\.isoforms\\.results\\.gz$",
-  recursive = TRUE,
-  full.names = TRUE
-)
+read_rsem_tran <- function(dir){
+  rsem_tran_file <- list.files(
+    path = dir,
+    pattern = "\\.isoforms\\.results",
+    recursive = TRUE,
+    full.names = TRUE
+  )
+  my_sample <- sub(pattern = "(.*)_.*", replacement = "\\1", x = basename(rsem_tran_file))
+  my_sample <- sub(pattern = ".isoforms.results", replacement = "", x = my_sample)
+  rsem_tran <- tximport(
+    rsem_tran_file,
+    type = "rsem",
+    txIn = TRUE,
+    txOut = TRUE
+  )
+  colnames(rsem_tran$abundance) <- my_sample
+  rsem_tran
+}
 
-my_sample <- sub(pattern = "(.*)_.*", replacement = "\\1", x = basename(rsem_tran_file))
+rsem_gene <- read_rsem_gene("../results/star_rsem")
+rsem_tran <- read_rsem_tran("../results/star_rsem")
 
-rsem_gene <- tximport(
-  rsem_gene_file,
-  type = "rsem",
-  txIn = FALSE,
-  txOut = FALSE
-)
-
-rsem_tran <- tximport(
-  rsem_tran_file,
-  type = "rsem",
-  txIn = TRUE,
-  txOut = TRUE
-)
-
-colnames(rsem_gene$abundance) <- my_sample
-colnames(rsem_tran$abundance) <- my_sample
+rsem_gene_nf <- read_rsem_gene("../results/nfcore_rnaseq/star_rsem/")
+rsem_tran_nf <- read_rsem_tran("../results/nfcore_rnaseq/star_rsem/")
 
 rsem_gene$abundance[1:6, 1:6]
 rsem_tran$abundance[1:6, 1:6]
@@ -165,9 +176,7 @@ colnames(kallisto_tran$abundance) <- my_sample
 kallisto_tran$abundance[1:6, 1:6]
 ```
 
-## Comparison
-
-### Different tools
+## Comparisons
 
 Correlate the gene expression values and plot results.
 
@@ -231,4 +240,42 @@ transcript_res |>
   geom_boxplot() +
   theme_minimal() +
   ggtitle("Spearman correlations between transcript quantifications")
+```
+
+Compare with `nf-core/rnaseq`.
+
+```{r rsem_comp_gene}
+my_gene <- row.names(rsem_gene_nf$abundance)
+my_sample <- colnames(rsem_gene_nf$abundance)
+
+purrr::map_dbl(my_sample, function(x){
+  my_rsem <- rsem_gene$abundance[my_gene, x]
+  my_rsem_nf <- rsem_gene_nf$abundance[my_gene, x]
+  cor(my_rsem, my_rsem_nf, method = "spearman")
+})
+```
+
+```{r rsem_comp_tran}
+my_gene <- row.names(rsem_tran_nf$abundance)
+my_sample <- colnames(rsem_tran_nf$abundance)
+
+purrr::map_dbl(my_sample, function(x){
+  my_rsem <- rsem_tran$abundance[my_gene, x]
+  my_rsem_nf <- rsem_tran_nf$abundance[my_gene, x]
+  cor(my_rsem, my_rsem_nf, method = "spearman")
+})
+```
+
+```{r rsem_comp_plot}
+my_gene <- row.names(rsem_gene_nf$abundance)
+my_sample <- colnames(rsem_gene_nf$abundance)
+
+data.frame(
+  simple = rsem_gene$abundance[my_gene, my_sample[1]],
+  nfcore = rsem_gene_nf$abundance[my_gene, my_sample[1]]
+) |>
+  ggplot(aes(log1p(simple), log1p(nfcore))) +
+  geom_point() +
+  theme_minimal() +
+  ggtitle(my_sample[1])
 ```
