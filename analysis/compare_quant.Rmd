@@ -270,12 +270,15 @@ purrr::map_dbl(my_sample, function(x){
 my_gene <- row.names(rsem_gene_nf$abundance)
 my_sample <- colnames(rsem_gene_nf$abundance)
 
-data.frame(
-  simple = rsem_gene$abundance[my_gene, my_sample[1]],
-  nfcore = rsem_gene_nf$abundance[my_gene, my_sample[1]]
-) |>
-  ggplot(aes(log1p(simple), log1p(nfcore))) +
-  geom_point() +
-  theme_minimal() +
-  ggtitle(my_sample[1])
+purrr::map(my_sample, function(x){
+  data.frame(
+    simple = rsem_gene$abundance[my_gene, x],
+    nfcore = rsem_gene_nf$abundance[my_gene, x]
+  ) |>
+    ggplot(aes(log1p(simple), log1p(nfcore))) +
+    geom_point() +
+    theme_minimal() +
+    ggtitle(x) -> p
+  print(p)
+}) -> dev_null
 ```
