@@ -14,6 +14,7 @@
     - [Download reference transcriptome](#download-reference-transcriptome)
     - [Running nf-core/rnaseq on the test data](#running-nf-corernaseq-on-the-test-data)
     - [nf-core/rnaseq results](#nf-corernaseq-results)
+    - [Creating a reference](#creating-a-reference)
   - [Papers](#papers)
 
 ## Basics
@@ -268,6 +269,43 @@ The [following steps](https://nf-co.re/rnaseq/3.14.0/) are run:
 15. Pseudoalignment and quantification (Salmon or ‘Kallisto’; optional)
 16. Present QC for raw read, alignment, gene biotype, sample similarity, and strand-specificity checks (MultiQC, R)
 
+To see the steps run, use `nextflow log`.
+
+```console
+nextflow log -f name,workdir disturbed_allen | grep ERR188044
+```
+```
+NFCORE_RNASEQ:RNASEQ:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:TRIMGALORE (ERR188044)    /home/dtang/github/rnaseq/work/7a/526dc6f5d710e529e2e4bb2e75f15d
+NFCORE_RNASEQ:RNASEQ:FASTQ_SUBSAMPLE_FQ_SALMON:FQ_SUBSAMPLE (ERR188044) /home/dtang/github/rnaseq/work/67/ab6ddac43779f8175031f08d82325d
+NFCORE_RNASEQ:RNASEQ:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:FASTQC (ERR188044)        /home/dtang/github/rnaseq/work/f2/cab64c32f2f243f8d15f5a2276a131
+NFCORE_RNASEQ:RNASEQ:FASTQ_SUBSAMPLE_FQ_SALMON:SALMON_QUANT (ERR188044) /home/dtang/github/rnaseq/work/1e/c51ad2fbf230d80e6d586959f03f97
+NFCORE_RNASEQ:RNASEQ:QUANTIFY_RSEM:RSEM_CALCULATEEXPRESSION (ERR188044) /home/dtang/github/rnaseq/work/ec/a0210b2055fbda3a5538121afde2ce
+NFCORE_RNASEQ:RNASEQ:QUANTIFY_RSEM:BAM_SORT_STATS_SAMTOOLS:SAMTOOLS_SORT (ERR188044)    /home/dtang/github/rnaseq/work/f4/f9e5aba2c85ac270e06a2a4bfabd7c
+NFCORE_RNASEQ:RNASEQ:QUANTIFY_RSEM:BAM_SORT_STATS_SAMTOOLS:SAMTOOLS_INDEX (ERR188044)   /home/dtang/github/rnaseq/work/37/b9118d82237a5f021723107b68ce20
+NFCORE_RNASEQ:RNASEQ:BAM_MARKDUPLICATES_PICARD:PICARD_MARKDUPLICATES (ERR188044)        /home/dtang/github/rnaseq/work/70/f6b8b1bb90aae8c0cd45a3293131b6
+NFCORE_RNASEQ:RNASEQ:DUPRADAR (ERR188044)       /home/dtang/github/rnaseq/work/90/85df41c94ac7aefd633014492f3e0d
+NFCORE_RNASEQ:RNASEQ:QUANTIFY_RSEM:BAM_SORT_STATS_SAMTOOLS:BAM_STATS_SAMTOOLS:SAMTOOLS_IDXSTATS (ERR188044)     /home/dtang/github/rnaseq/work/b4/56bb47087ee916ef30b47bf6bfac81
+NFCORE_RNASEQ:RNASEQ:QUANTIFY_RSEM:BAM_SORT_STATS_SAMTOOLS:BAM_STATS_SAMTOOLS:SAMTOOLS_FLAGSTAT (ERR188044)     /home/dtang/github/rnaseq/work/af/5eed24a33ee7fe53e30f3fc0032bb8
+NFCORE_RNASEQ:RNASEQ:QUANTIFY_RSEM:BAM_SORT_STATS_SAMTOOLS:BAM_STATS_SAMTOOLS:SAMTOOLS_STATS (ERR188044)        /home/dtang/github/rnaseq/work/01/165dded30ca01b91eeec9520902378
+NFCORE_RNASEQ:RNASEQ:STRINGTIE_STRINGTIE (ERR188044)    /home/dtang/github/rnaseq/work/6d/73dc0e698153e235b2cbe83d05dec0
+NFCORE_RNASEQ:RNASEQ:BEDTOOLS_GENOMECOV (ERR188044)     /home/dtang/github/rnaseq/work/f0/11fa5e004db557db47564130a3e5f0
+NFCORE_RNASEQ:RNASEQ:QUALIMAP_RNASEQ (ERR188044)        /home/dtang/github/rnaseq/work/0b/791d2f9f8acf9a0f3c6372b645d438
+NFCORE_RNASEQ:RNASEQ:BAM_MARKDUPLICATES_PICARD:SAMTOOLS_INDEX (ERR188044)       /home/dtang/github/rnaseq/work/ba/e3c3e01fc176262600221c733c67cb
+NFCORE_RNASEQ:RNASEQ:BAM_MARKDUPLICATES_PICARD:BAM_STATS_SAMTOOLS:SAMTOOLS_IDXSTATS (ERR188044) /home/dtang/github/rnaseq/work/ae/3b941048cf11aed9c8d00e8dfbbd43
+NFCORE_RNASEQ:RNASEQ:BAM_MARKDUPLICATES_PICARD:BAM_STATS_SAMTOOLS:SAMTOOLS_FLAGSTAT (ERR188044) /home/dtang/github/rnaseq/work/f2/6ea4c1d1eed6db4a9888fa96e73173
+NFCORE_RNASEQ:RNASEQ:BAM_MARKDUPLICATES_PICARD:BAM_STATS_SAMTOOLS:SAMTOOLS_STATS (ERR188044)    /home/dtang/github/rnaseq/work/64/601ee5ecd8771d78d1d9c321c05a0c
+NFCORE_RNASEQ:RNASEQ:BEDGRAPH_BEDCLIP_BEDGRAPHTOBIGWIG_FORWARD:UCSC_BEDCLIP (ERR188044) /home/dtang/github/rnaseq/work/58/63a013120761848763aa60316ec4b8
+NFCORE_RNASEQ:RNASEQ:BEDGRAPH_BEDCLIP_BEDGRAPHTOBIGWIG_REVERSE:UCSC_BEDCLIP (ERR188044) /home/dtang/github/rnaseq/work/32/733fc1693e0c65809b4b50f7d688d6
+NFCORE_RNASEQ:RNASEQ:BAM_RSEQC:RSEQC_JUNCTIONSATURATION (ERR188044)     /home/dtang/github/rnaseq/work/72/26a223bb06dcf4cc63747f3a9468dc
+NFCORE_RNASEQ:RNASEQ:BEDGRAPH_BEDCLIP_BEDGRAPHTOBIGWIG_FORWARD:UCSC_BEDGRAPHTOBIGWIG (ERR188044)        /home/dtang/github/rnaseq/work/c7/132cd71ae1ddf515f63aebae9996a1
+NFCORE_RNASEQ:RNASEQ:BEDGRAPH_BEDCLIP_BEDGRAPHTOBIGWIG_REVERSE:UCSC_BEDGRAPHTOBIGWIG (ERR188044)        /home/dtang/github/rnaseq/work/8c/60897426d2c86078322eab18334f58
+NFCORE_RNASEQ:RNASEQ:BAM_RSEQC:RSEQC_READDUPLICATION (ERR188044)        /home/dtang/github/rnaseq/work/17/270bd314db35baa68102828396b1db
+NFCORE_RNASEQ:RNASEQ:BAM_RSEQC:RSEQC_READDISTRIBUTION (ERR188044)       /home/dtang/github/rnaseq/work/ee/39e9d4b1cd296b3578c81ddaf70095
+NFCORE_RNASEQ:RNASEQ:BAM_RSEQC:RSEQC_INFEREXPERIMENT (ERR188044)        /home/dtang/github/rnaseq/work/a3/8cb64c313ee38b918772a4050e882f
+NFCORE_RNASEQ:RNASEQ:BAM_RSEQC:RSEQC_JUNCTIONANNOTATION (ERR188044)     /home/dtang/github/rnaseq/work/fa/533b52517472114de44f779a72ab1a
+NFCORE_RNASEQ:RNASEQ:BAM_RSEQC:RSEQC_BAMSTAT (ERR188044)        /home/dtang/github/rnaseq/work/24/429d85a4510077beef6a5ea22a6d11
+NFCORE_RNASEQ:RNASEQ:BAM_RSEQC:RSEQC_INNERDISTANCE (ERR188044)  /home/dtang/github/rnaseq/work/f3/e3b3b7f2fb50e338b315f305f5f71a
+```
 
 [STAR + RSEM](https://nf-co.re/rnaseq/3.14.0/docs/output/#star-via-rsem) results are :
 
@@ -299,6 +337,12 @@ gene_id	transcript_id(s)	ERR188044	ERR188104	ERR188234	ERR188245	ERR188257	ERR18
 ENSG00000000003.16	ENST00000373020.9,ENST00000494424.1,ENST00000496771.5,ENST00000612152.4	10.83	8.73	0.57	0.00	5.02	4.26	12.98	3.70	2.12	0.38	1.45	4.29
 ENSG00000000005.6	ENST00000373031.5,ENST00000485971.1	0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00	0.00
 ```
+
+### Creating a reference
+
+`nf-core/rnaseq` provides the option `--save_reference` to save the STAR index in the results directory. This is useful because you don't want to create the same index each time you run the workflow. From the documentation it isn't clear whether we can just run the workflow to create the reference. The next best thing to do is to simply skip all the steps of the workflow, except the one that creates the reference. This is what `scripts/create_nfcore_rnaseq_ref.sh` does; however we can't use `--skip_alignment` because this will skip all alignment steps.
+
+Unfortunately, the reference does not seem to be saved in the specified results directory.
 
 ## Papers
 
