@@ -14,5 +14,5 @@ share
 
 # results
 results
-execution_report.html
-flowchart.html
+execution_report*.html
+flowchart*.html

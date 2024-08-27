@@ -210,10 +210,10 @@ Generate `samplesheet.csv`.
 ./scripts/create_samplesheet.pl > samplesheet.csv
 ```
 
-Run it! (The script below skips some steps of the workflow; use `scripts/run_nfcore_rnaseq_default.sh` to run all default steps.)
+Run it!
 
 ```console
-./scripts/run_nfcore_rnaseq.sh
+./scripts/run_nfcore_rnaseq_default.sh
 ```
 
 The results will be in `results/nfcore_rnaseq`.
@@ -224,8 +224,19 @@ Use `nextflow log` to check the run log.
 nextflow log
 ```
 ```
-TIMESTAMP          	DURATION	RUN NAME   	STATUS	REVISION ID	SESSION ID                          	COMMAND
-2024-08-23 11:23:59	59m 7s  	cheesy_kare	OK    	746820de9b 	e0706fe4-e01a-4cfd-aef3-37cfd406f555	nextflow run /home/tan118/nf-core/rnaseq/3_14_0/main.nf -resume -with-report execution_report.html -with-trace -with-dag flowchart.html --input /home/tan118/github/rnaseq/samplesheet.csv --outdir /home/tan118/github/rnaseq/results/nfcore_rnaseq --fasta /home/tan118/github/rnaseq/raw/chrX_data/genome/chrX.fa --gtf /home/tan118/github/rnaseq/raw/chrX_data/genes/gencode.v46.annotation.chrx.gtf --aligner star_rsem --save_reference --skip_markduplicates --skip_dupradar --skip_deseq2_qc --skip_stringtie -profile singularity --max_cpus 6 --max_memory 30GB
+TIMESTAMP          	DURATION	RUN NAME       	STATUS	REVISION ID	SESSION ID                          	COMMAND
+2024-08-27 11:06:24	58m 9s  	disturbed_allen	OK    	746820de9b 	e2776595-45cc-49d9-9fa7-52beeed794bb	nextflow run /home/dtang/nf-core/rnaseq/3_14_0/main.nf -resume -with-report execution_report_2024_08_27_11_06_21.html -with-trace -with-dag flowchart_2024_08_27_11_06_21.html --input /home/dtang/github/rnaseq/samplesheet.csv --outdir /home/dtang/github/rnaseq/results/nfcore_rnaseq_default --fasta /home/dtang/github/rnaseq/raw/chrX_data/genome/chrX.fa --gtf /home/dtang/github/rnaseq/raw/chrX_data/genes/gencode.v46.annotation.chrx.gtf --aligner star_rsem -profile singularity --max_cpus 6 --max_memory 16GB
+```
+
+Name of task and directory containing results of task.
+
+```console
+nextflow log -f name,workdir disturbed_allen | head -3
+```
+```
+NFCORE_RNASEQ:RNASEQ:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:TRIMGALORE (ERR188044)    /home/dtang/github/rnaseq/work/7a/526dc6f5d710e529e2e4bb2e75f15d
+NFCORE_RNASEQ:RNASEQ:PREPARE_GENOME:GTF_FILTER (chrX.fa)        /home/dtang/github/rnaseq/work/5e/8f3bd1093fd1d4d1b5947f50eb2f8b
+NFCORE_RNASEQ:RNASEQ:PREPARE_GENOME:CUSTOM_GETCHROMSIZES (chrX.fa)      /home/dtang/github/rnaseq/work/3d/e24d393ecf289095608b2df1c41b50
 ```
 
 ### nf-core/rnaseq results
