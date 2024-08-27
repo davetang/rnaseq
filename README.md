@@ -13,6 +13,7 @@
   - [nf-core/rnaseq](#nf-corernaseq)
     - [Download reference transcriptome](#download-reference-transcriptome)
     - [Running nf-core/rnaseq on the test data](#running-nf-corernaseq-on-the-test-data)
+    - [nf-core/rnaseq results](#nf-corernaseq-results)
   - [Papers](#papers)
 
 ## Basics
@@ -209,7 +210,7 @@ Generate `samplesheet.csv`.
 ./scripts/create_samplesheet.pl > samplesheet.csv
 ```
 
-Run it!
+Run it! (The script below skips some steps of the workflow; use `scripts/run_nfcore_rnaseq_default.sh` to run all default steps.)
 
 ```console
 ./scripts/run_nfcore_rnaseq.sh
@@ -217,7 +218,7 @@ Run it!
 
 The results will be in `results/nfcore_rnaseq`.
 
-Check log
+Use `nextflow log` to check the run log.
 
 ```console
 nextflow log
@@ -227,7 +228,37 @@ TIMESTAMP          	DURATION	RUN NAME   	STATUS	REVISION ID	SESSION ID          
 2024-08-23 11:23:59	59m 7s  	cheesy_kare	OK    	746820de9b 	e0706fe4-e01a-4cfd-aef3-37cfd406f555	nextflow run /home/tan118/nf-core/rnaseq/3_14_0/main.nf -resume -with-report execution_report.html -with-trace -with-dag flowchart.html --input /home/tan118/github/rnaseq/samplesheet.csv --outdir /home/tan118/github/rnaseq/results/nfcore_rnaseq --fasta /home/tan118/github/rnaseq/raw/chrX_data/genome/chrX.fa --gtf /home/tan118/github/rnaseq/raw/chrX_data/genes/gencode.v46.annotation.chrx.gtf --aligner star_rsem --save_reference --skip_markduplicates --skip_dupradar --skip_deseq2_qc --skip_stringtie -profile singularity --max_cpus 6 --max_memory 30GB
 ```
 
-[STAR + RSEM](https://nf-co.re/rnaseq/3.14.0/docs/output/#star-via-rsem) results:
+### nf-core/rnaseq results
+
+The [following steps](https://nf-co.re/rnaseq/3.14.0/) are run:
+
+1. Merge re-sequenced FastQ files (cat)
+2. Sub-sample FastQ files and auto-infer strandedness (fq, Salmon)
+3. Read QC (FastQC)
+4. UMI extraction (UMI-tools)
+5. Adapter and quality trimming (Trim Galore!)
+6. Removal of genome contaminants (BBSplit)
+7. Removal of ribosomal RNA (SortMeRNA)
+8. Choice of multiple alignment and quantification routes:
+    * STAR -> Salmon
+    * STAR -> RSEM
+    * HiSAT2 -> NO QUANTIFICATION
+9. Sort and index alignments (SAMtools)
+10. UMI-based deduplication (UMI-tools)
+11. Duplicate read marking (picard MarkDuplicates)
+12. Transcript assembly and quantification (StringTie)
+13. Create bigWig coverage files (BEDTools, bedGraphToBigWig)
+14. Extensive quality control:
+    * RSeQC
+    * Qualimap
+    * dupRadar
+    * Preseq
+    * DESeq2
+15. Pseudoalignment and quantification (Salmon or ‘Kallisto’; optional)
+16. Present QC for raw read, alignment, gene biotype, sample similarity, and strand-specificity checks (MultiQC, R)
+
+
+[STAR + RSEM](https://nf-co.re/rnaseq/3.14.0/docs/output/#star-via-rsem) results are :
 
 * `rsem.merged.gene_counts.tsv`: Matrix of gene-level raw counts across all samples.
 * `rsem.merged.gene_tpm.tsv`: Matrix of gene-level TPM values across all samples.
