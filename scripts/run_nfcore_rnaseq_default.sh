@@ -11,6 +11,7 @@ GTF=$(realpath ${CHRX_DIR}/genes/gencode.v${GENCODE_VER}.annotation.chrx.gtf)
 THREADS=6
 MAXMEM=16GB
 OUTDIR=$(realpath ${RESULTS_DIR})/nfcore_rnaseq_default
+DATETIME=$(date +%Y_%m_%d_%H_%M_%S)
 
 if [[ ! -d ${OUTDIR} ]]; then
    mkdir -p ${OUTDIR}
@@ -20,9 +21,9 @@ export NXF_SINGULARITY_CACHEDIR=${HOME}/nf-core/sif
 
 nextflow run ${HOME}/nf-core/rnaseq/3_14_0/main.nf \
     -resume \
-    -with-report \
+    -with-report execution_report_${DATETIME}.html\
     -with-trace \
-    -with-dag \
+    -with-dag flowchart_${DATETIME}.html \
     --input ${DIR}/samplesheet.csv \
     --outdir ${OUTDIR} \
     --fasta ${FASTA} \
