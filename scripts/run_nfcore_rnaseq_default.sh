@@ -29,6 +29,7 @@ nextflow run ${HOME}/nf-core/rnaseq/3_14_0/main.nf \
     --fasta ${FASTA} \
     --gtf ${GTF} \
     --aligner star_rsem \
+    --save_reference true \
     -profile singularity \
     --max_cpus ${THREADS} \
     --max_memory ${MAXMEM}
