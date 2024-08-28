@@ -22,7 +22,6 @@ fi
 export NXF_SINGULARITY_CACHEDIR=${HOME}/nf-core/sif
 
 nextflow run ${HOME}/nf-core/rnaseq/3_14_0/main.nf \
-    -resume \
     -with-trace \
     --input ${TMPDIR}/samplesheet.csv \
     --outdir ${OUTDIR} \
