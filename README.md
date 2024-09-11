@@ -15,6 +15,7 @@
     - [Running nf-core/rnaseq on the test data](#running-nf-corernaseq-on-the-test-data)
     - [nf-core/rnaseq results](#nf-corernaseq-results)
     - [Creating a reference](#creating-a-reference)
+  - [Troubleshooting](#troubleshooting)
   - [Papers](#papers)
 
 ## Basics
@@ -343,6 +344,10 @@ ENSG00000000005.6	ENST00000373031.5,ENST00000485971.1	0.00	0.00	0.00	0.00	0.00	0
 `nf-core/rnaseq` provides the option `--save_reference` to save the STAR index in the results directory. This is useful because you don't want to create the same index each time you run the workflow. From the documentation it isn't clear whether we can just run the workflow to create the reference. The next best thing to do is to simply skip all the steps of the workflow, except the one that creates the reference. This is what `scripts/create_nfcore_rnaseq_ref.sh` does; however we can't use `--skip_alignment` because this will skip all alignment steps.
 
 Unfortunately, the reference does not seem to be saved in the specified results directory.
+
+## Troubleshooting
+
+- [How should I handle the raw reads with failed per base sequence content in fastQC](https://www.biostars.org/p/371979/)
 
 ## Papers
 
