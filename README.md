@@ -16,6 +16,7 @@
     - [nf-core/rnaseq results](#nf-corernaseq-results)
     - [Creating a reference](#creating-a-reference)
   - [Troubleshooting](#troubleshooting)
+  - [FAQ](#faq)
   - [Papers](#papers)
 
 ## Basics
@@ -348,6 +349,21 @@ Unfortunately, the reference does not seem to be saved in the specified results 
 ## Troubleshooting
 
 - [How should I handle the raw reads with failed per base sequence content in fastQC](https://www.biostars.org/p/371979/)
+
+## FAQ
+
+- [How do you generate TMM normalized counts using EdgeR?](https://www.biostars.org/p/9475236/)
+
+```r
+# make the DGEList:
+y <- DGEList(...)
+
+# calculate TMM normalization factors:
+y <- calcNormFactors(y)
+
+# get the normalized counts:
+cpms <- cpm(y, log=FALSE)
+```
 
 ## Papers
 
